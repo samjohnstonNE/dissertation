@@ -9,7 +9,6 @@ import { TransactionContext } from "../context/TransactionContext";
 import { Steps } from 'intro.js-react';
 import "intro.js/introjs.css";
 import stepList  from "../utils/stepList";
-import intro from "intro.js";
 
 
 const NavbarItem = ({title, classProps}) => {
