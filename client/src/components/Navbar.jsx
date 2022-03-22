@@ -47,22 +47,37 @@ const Navbar = () => {
                 onExit={onExit}
             />
             <div>
-                <a href="https://metamask.io/" target="_blank" rel="noopener noreferrer">
-                <img src={MetaMask} alt="MetaMask" className="w-12 cursor-pointer" id="one" />
+                <a href="https://metamask.io/" target="_blank" rel="noopener noreferrer" data-tooltip-target="tooltip-dark">
+                    <img src={MetaMask} alt="MetaMask" className="w-12 cursor-pointer" id="one" />
                 </a>
+                <div id="tooltip-dark" role="tooltip"
+                     className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-600 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    MetaMask
+                    <div className="tooltip-arrow" data-popper-arrow />
+                </div>
             </div>
             <div className="pl-4">
-                <a href="https://mathwallet.org/en-us/" target="_blank" rel="noopener noreferrer">
-                    <img src={MathWalletDark} alt="MathWalletDark" className="w-12 cursor-pointer" id="two" />
+                <a href="https://mathwallet.org/en-us/" target="_blank" rel="noopener noreferrer" data-tooltip-target="tooltip-dark2">
+                    <img src={MathWalletDark} alt="MathWallet" className="w-12 cursor-pointer" id="two" />
                 </a>
+                <div id="tooltip-dark2" role="tooltip"
+                     className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-600 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    MathWallet
+                    <div className="tooltip-arrow" data-popper-arrow />
+                </div>
             </div>
                 <p className="md:flex hidden text-white pl-4">
                     |
                 </p>
             <div className="pl-4">
-                <a href="https://etherscan.io/" target="_blank" rel="noopener noreferrer">
-                    <img src={EtherScanDark} alt="EtherScanDark" className="w-12 cursor-pointer" id="three" />
+                <a href="https://etherscan.io/" target="_blank" rel="noopener noreferrer" data-tooltip-target="tooltip-dark3">
+                    <img src={EtherScanDark} alt="EtherScan" className="w-12 cursor-pointer" id="three" />
                 </a>
+                <div id="tooltip-dark3" role="tooltip"
+                     className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-600 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Etherscan.io
+                    <div className="tooltip-arrow" data-popper-arrow />
+                </div>
             </div>
 
             <section className="md:flex-[1.0] pl-4">
@@ -104,9 +119,12 @@ const Navbar = () => {
                         <li className="text-xl w-full my-2">
                             <AiOutlineClose onClick={() => setToggleMenu(false)} />
                         </li>
-                        {["Wallet", "Explorer", "Help"].map((item, index) => (
+                        {["Wallet", "Explorer"].map((item, index) => (
                             <NavbarItem key={item + index} title={item} classProps="my-2 text-lg" />
                         ))}
+                        <button onClick={() => toggleSteps(true)} className="pl-4">
+                            Tutorial
+                        </button>
                         <li className="bg-[#2952e3] py-2 px-7 mx-3 rounded-full cursor-pointer hover:bg-[#2546bd]">
                             Login
                         </li>

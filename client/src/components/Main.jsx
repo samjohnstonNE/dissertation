@@ -1,15 +1,11 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import { SiEthereum } from "react-icons/si";
 import Input from "./Input";
 import { useWeb3 } from "@3rdweb/hooks";
 import { TransactionContext } from "../context/TransactionContext";
-//import { shortenAddress  } from "../utils/shortenAddress";
 import { Steps } from 'intro.js-react';
 import "intro.js/introjs.css";
 import stepList  from "../utils/stepList";
-
-
-const commonStyles = "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[1px] border-gray-400 text-sm text-black dark:text-white";
 
 const Main = () => {
 
@@ -55,6 +51,9 @@ const Main = () => {
                     <p className="dark:text-gray-300 text-left mt-5 text-black md:w-9/12 w-11/12 text-base">
                         The web wallet for both beginners and experienced users.
                     </p>
+                    <p className="dark:text-gray-300 text-left mt-5 text-black md:w-9/12 w-11/12 dark:font-thin italic">
+                        *This app includes a visual walkthrough and other a few features to help you understand how to create a live crypto transaction*
+                    </p>
 
                     {!currentAccount && (
                         <button
@@ -66,27 +65,6 @@ const Main = () => {
                         <p className="dark:text-white text-base text-white font-semibold">Connect Web3.0 Wallet</p>
                     </button>
                     )}
-
-                    <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
-                        <div className={`sm:rounded-tl-2xl ${commonStyles}`}>
-                            Reliability
-                        </div>
-                        <div className={commonStyles}>
-                            Security
-                        </div>
-                        <div className={`sm:rounded-tr-2xl ${commonStyles}`}>
-                            Ethereum
-                        </div>
-                        <div className={`sm:rounded-bl-2xl ${commonStyles}`}>
-                            Web 3.0
-                        </div>
-                        <div className={commonStyles}>
-                            Low Fees<
-                            /div>
-                        <div className={`rounded-br-2xl ${commonStyles}`}>
-                            Blockchain
-                        </div>
-                    </div>
                 </div>
 
                 <div className="flex flex-col flex-1 items-center justify-start w-full md:mt-0 mt-10 pl-4">
@@ -103,8 +81,12 @@ const Main = () => {
                             <p className="text-black font-light text-sm dark:text-gray-300">
                                 Short Address:
                             </p>
-                            <p className="text-black font-light text-sm dark:text-gray-300" id="eight">
+                            <p className="text-black font-light text-sm dark:text-gray-300" id="eight" data-tooltip-target="tooltip-dark4">
                                 Chain ID: {chainId}
+                                <span id="tooltip-dark4" role="tooltip"
+                                     className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-600 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                    Ethereum Network
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -112,8 +94,6 @@ const Main = () => {
                         <Input placeholder="Recipient Address" name="addressTo" type="text" handleChange={handleChange} />
                         <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} />
                         <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} />
-
-
                         <div className="h-[1px] w-full bg-grey-400 my-2"/>
                             <button
                             type="button"

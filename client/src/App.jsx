@@ -1,5 +1,7 @@
-import { Navbar, Main, Transactions, Footer } from "./components";
+import { Navbar, Main, TransactionsTailwind, Footer } from "./components";
 import { ThirdwebWeb3Provider } from '@3rdweb/hooks';
+import React from "react";
+import 'flowbite';
 
 
 const App = ({children}) => {
@@ -29,10 +31,11 @@ const App = ({children}) => {
     >
     <div className='min-h-screen'>
       <div>
+        <script src="../path/to/flowbite/dist/flowbite.js"></script>
         <Navbar />
         <Main />
       </div>
-      <Transactions />
+      <TransactionsTailwind />
       <Footer />
     </div>
   {children}

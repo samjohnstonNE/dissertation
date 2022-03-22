@@ -50,28 +50,33 @@ export default [
         intro: 'This area shows the latest transactions sent from your wallet using this app',
     },
     {
-        title: 'Your Address',
+        title: 'ID',
         element: '#eleven',
+        intro: 'This is a simple index number that can be used to help identify transactions within this app or indicate what data is example data (This not related to the blockchain network)',
+    },
+    {
+        title: 'Your Address',
+        element: '#twelve',
         intro: 'This is a full wallet address from a previous transaction and can be clicked on to display more information on Etherscan',
     },
     {
         title: 'Recipients Address',
-        element: '#twelve',
+        element: '#thirteen',
         intro: 'This address can also be clicked on to display more information on Etherscan',
     },
     {
         title: 'Amount',
-        element: '#thirteen',
+        element: '#fourteen',
         intro: 'This was the amount sent in ETH for that transaction',
     },
     {
         title: 'Message',
-        element: '#fourteen',
+        element: '#fifteen',
         intro: 'A message may appear just below the amount if one was sent in the transaction',
     },
     {
         title: 'Timestamp',
-        element: '#fifteen',
+        element: '#sixteen',
         intro: 'This was the timestamp of when the transaction was confirmed on the blockchain network',
     }
 ];

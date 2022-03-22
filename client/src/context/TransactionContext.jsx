@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 
 import { contractABI, contractAddress } from "../utils/constants";
 
-export const TransactionContext = React.createContext();
+export const TransactionContext = React.createContext(0);
 
 const { ethereum } = window;
 
@@ -44,7 +44,6 @@ export const TransactionProvider = ({children}) => {
                     amount: parseInt(transaction.amount._hex) / (10 ** 18)
                 }));
 
-                console.log(structuredTransactions);
                 setTransactions(structuredTransactions);
             } else {
                 console.log("Ethereum is not present");
@@ -83,7 +82,7 @@ export const TransactionProvider = ({children}) => {
         } catch (error) {
             console.log(error);
 
-            throw new Error("No Ethereum Object");
+            throw new Error("Transaction check failed");
         }
     };
 
@@ -94,13 +93,14 @@ export const TransactionProvider = ({children}) => {
             const accounts = await  ethereum.request({method: 'eth_requestAccounts', });
 
             setCurrentAccount(accounts[0]);
+
+            window.reload();
         } catch (error) {
             console.log(error)
 
-            throw new Error("No Ethereum Object");
+            throw new Error("No Ethereum object");
         }
     };
-
 
     const sendTransaction = async () => {
         try {
@@ -126,12 +126,11 @@ export const TransactionProvider = ({children}) => {
                 await transactionHash.wait();
                 console.log(`Success - ${transactionHash.hash}`);
                 setIsLoading(false);
+                window.alert(`Transaction Successful!\n TxID - ${transactionHash.hash}\n If the window does not refresh after closing this alert, please refresh the page`)
 
                 const transactionsCount = await transactionContract.getTransactionCount();
 
                 setTransactionCount(transactionsCount.toNumber());
-
-                window.reload();
             } else {
                 console.log("No Ethereum Object");
             }
@@ -145,7 +144,8 @@ export const TransactionProvider = ({children}) => {
     useEffect(() => {
         checkWalletConnection();
         checkTransactionsExistence();
-    }, [transactionCount]);
+    },
+        [transactionCount]);
 
     return (
         <TransactionContext.Provider value={{

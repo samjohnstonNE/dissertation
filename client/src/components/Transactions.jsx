@@ -5,7 +5,7 @@ import { Steps } from 'intro.js-react';
 import "intro.js/introjs.css";
 import stepList  from "../utils/stepList";
 
-const TransactionCard = ({addressTo, addressFrom, timestamp, message, amount, url}) => {
+const TransactionCard = ({ addressTo, addressFrom, timestamp, message, amount }) => {
 
     const [ enabled, setEnabled ] = useState(true)
     const [ initialStep, setInitialStep ] = useState(0)
