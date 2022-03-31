@@ -22,10 +22,6 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.eth-card {
-    background-color: grey;
-}
-
 
 @tailwind base;
 @tailwind components;

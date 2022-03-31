@@ -1,7 +1,10 @@
 import { Navbar, Main, TransactionsTailwind, Footer } from "./components";
 import { ThirdwebWeb3Provider } from '@3rdweb/hooks';
-import React from "react";
+import React, {useState} from "react";
 import 'flowbite';
+import "intro.js/introjs.css";
+import { Steps } from 'intro.js-react';
+import stepList  from "./utils/stepList";
 
 
 const App = ({children}) => {
@@ -11,6 +14,13 @@ const App = ({children}) => {
     injected: {},
     walletconnect: {},
   };
+
+  const [ enabled, setEnabled ] = useState(true);
+  const [ initialStep, ] = useState(0);
+
+  const onExit = () => {
+    setEnabled(false)
+  }
 
 
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
@@ -31,6 +41,12 @@ const App = ({children}) => {
     >
     <div className='min-h-screen'>
       <div>
+        <Steps
+            enabled={enabled}
+            steps={stepList}
+            initialStep={initialStep}
+            onExit={onExit}
+        />
         <script src="../path/to/flowbite/dist/flowbite.js"></script>
         <Navbar />
         <Main />

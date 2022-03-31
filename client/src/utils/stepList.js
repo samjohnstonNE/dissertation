@@ -1,7 +1,7 @@
 export default [
     {
         title: 'Welcome',
-        intro: 'Welcome to my dissertation - A web3.0 wallet and blockchain explorer'
+        intro: 'Welcome to my dissertation project - A web3.0 wallet and partial blockchain explorer'
     },
     {
         title: 'MetaMask',
@@ -20,7 +20,7 @@ export default [
     },
     {
         element: '#four',
-        intro: 'These links can be used to display a connected wallet, open the explorer or view the tutorial again',
+        intro: 'These links can be used to refresh account balance, gas price or view the tutorial again',
     },
     {
         element: '#five',
@@ -47,12 +47,12 @@ export default [
     {
         title: 'Transactions',
         element: '#ten',
-        intro: 'This area shows the latest transactions sent from your wallet using this app',
+        intro: 'This area shows all transactions sent from your connected wallet',
     },
     {
         title: 'ID',
         element: '#eleven',
-        intro: 'This is a simple index number that can be used to help identify transactions within this app or indicate what data is example data (This not related to the blockchain network)',
+        intro: 'This is a ID is used to label the data as example data and while be changed to the blockchain chain ID when transactions are fetched',
     },
     {
         title: 'Your Address',
@@ -78,5 +78,10 @@ export default [
         title: 'Timestamp',
         element: '#sixteen',
         intro: 'This was the timestamp of when the transaction was confirmed on the blockchain network',
+    },
+    {
+        title: 'Real Transaction Information',
+        element: '#seventeen',
+        intro: 'Real transaction data can be fetched once a wallet is connected and more field with data for the transactions will become available',
     }
 ];

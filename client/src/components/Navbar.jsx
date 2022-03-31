@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
@@ -6,52 +6,28 @@ import MetaMask from "../../images/metamask-fox.svg";
 import MathWalletDark from "../../images/Mathwallet_Logo_Icon_White.svg"
 import EtherScanDark from "../../images/etherscan-logo-light-circle.png";
 import { TransactionContext } from "../context/TransactionContext";
-import { Steps } from 'intro.js-react';
-import "intro.js/introjs.css";
-import stepList  from "../utils/stepList";
+import { tooltipStyle } from "../styles/styles";
 
-
-const NavbarItem = ({title, classProps}) => {
-    return (
-        <li className={`mx-4 cursor-pointer ${classProps}`}>
-            {title}
-        </li>
-    )
-}
 
 const Navbar = () => {
 
     const [toggleMenu, setToggleMenu ] = useState(false);
 
-    const { connectWallet, currentAccount } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, gas, getGasPrice, accountBalance } = useContext(TransactionContext);
 
-
-    const [ enabled, setEnabled ] = useState(true)
-    const [ initialStep, setInitialStep ] = useState(0)
-
-    const onExit = () => {
-        setEnabled(false)
-    }
     const toggleSteps = () => {
         location.reload();
     };
 
-
     return(
 
         <nav className="w-full flex md:justify-end justify-between items-center p-4 bg-[#282c34] dark:bg-[#0f172a] border-b border-gray-400 border-opacity-20">
-            <Steps
-                enabled={enabled}
-                steps={stepList}
-                initialStep={initialStep}
-                onExit={onExit}
-            />
             <div>
                 <a href="https://metamask.io/" target="_blank" rel="noopener noreferrer" data-tooltip-target="tooltip-dark">
                     <img src={MetaMask} alt="MetaMask" className="w-12 cursor-pointer" id="one" />
                 </a>
                 <div id="tooltip-dark" role="tooltip"
-                     className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-600 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                     className={tooltipStyle}>
                     MetaMask
                     <div className="tooltip-arrow" data-popper-arrow />
                 </div>
@@ -61,7 +37,7 @@ const Navbar = () => {
                     <img src={MathWalletDark} alt="MathWallet" className="w-12 cursor-pointer" id="two" />
                 </a>
                 <div id="tooltip-dark2" role="tooltip"
-                     className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-600 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                     className={tooltipStyle}>
                     MathWallet
                     <div className="tooltip-arrow" data-popper-arrow />
                 </div>
@@ -74,10 +50,14 @@ const Navbar = () => {
                     <img src={EtherScanDark} alt="EtherScan" className="w-12 cursor-pointer" id="three" />
                 </a>
                 <div id="tooltip-dark3" role="tooltip"
-                     className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-600 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                     className={tooltipStyle}>
                     Etherscan.io
                     <div className="tooltip-arrow" data-popper-arrow />
                 </div>
+            </div>
+
+            <div className="pl-4">
+                <p className="dark:text-gray-300 text-xs text-left text-white text-base">{'Current Average Gas Price: ' + gas}</p>
             </div>
 
             <section className="md:flex-[1.0] pl-4">
@@ -85,10 +65,13 @@ const Navbar = () => {
 
             <ul className="float-right p-2 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
                 <li className="float-right p-2 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial" id="four">
-                    {["Wallet", "Explorer"].map((item, index) => (
-                        <NavbarItem key={item + index} title={item} />
-                    ))}
-                    <button onClick={() => toggleSteps(true)} className="pl-4">
+                    <button onClick={accountBalance} className="pl-5">
+                        Balance
+                    </button>
+                    <button onClick={getGasPrice} className="pl-5">
+                        Gas Price
+                    </button>
+                    <button onClick={() => toggleSteps(true)} className="pl-5">
                         Tutorial
                     </button>
                 </li>
@@ -119,9 +102,12 @@ const Navbar = () => {
                         <li className="text-xl w-full my-2">
                             <AiOutlineClose onClick={() => setToggleMenu(false)} />
                         </li>
-                        {["Wallet", "Explorer"].map((item, index) => (
-                            <NavbarItem key={item + index} title={item} classProps="my-2 text-lg" />
-                        ))}
+                        <button onClick={accountBalance} className="pl-5">
+                            Balance
+                        </button>
+                        <button onClick={getGasPrice} className="pl-4">
+                            Gas Price
+                        </button>
                         <button onClick={() => toggleSteps(true)} className="pl-4">
                             Tutorial
                         </button>
