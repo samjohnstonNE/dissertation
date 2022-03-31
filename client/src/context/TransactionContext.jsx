@@ -3,6 +3,7 @@ import { ethers } from 'ethers';
 
 import { contractABI, contractAddress, apiKey } from "../utils/constants";
 
+
 export const TransactionContext = React.createContext(0);
 
 const { ethereum } = window;
@@ -23,8 +24,6 @@ export const TransactionProvider = ({children}) => {
     const [currentAccount, setCurrentAccount] =  useState('');
     const [formData, setformData] = useState({addressTo: '', amount: '', message: ''});
     const [isLoading, setIsLoading] =  useState(false);
-    const [transactionCount, setTransactionCount] =  useState(localStorage.getItem('transactionCount'));
-    //const [transactions, setTransactions] = useState([]);
     const [history, setHistory] = useState([]);
     const [gas, setGas] = useState('');
     const [balance, setBalance] = useState('');
@@ -33,33 +32,6 @@ export const TransactionProvider = ({children}) => {
         setformData((prevState) => ({...prevState, [name]: e.target.value}));
     };
 
-    /*
-    const getAllTransactions = async () => {
-        try {
-            if (ethereum) {
-
-                const transactionContract = getEthereumContract();
-
-                const availableTransactions = await transactionContract.getAllTransactions();
-
-                const structuredTransactions = availableTransactions.map((transaction) => ({
-                    addressTo: transaction.receiver,
-                    addressFrom: transaction.sender,
-                    timestamp: new Date(transaction.timestamp.toNumber() * 1000).toLocaleString(),
-                    message: transaction.message,
-                    amount: parseInt(transaction.amount._hex) / (10 ** 18)
-                }));
-
-                setTransactions(structuredTransactions);
-            } else {
-                console.log("Ethereum is not present");
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-     */
 
     const accountBalance = () => {
         try {
@@ -77,6 +49,8 @@ export const TransactionProvider = ({children}) => {
             }
         } catch (error) {
             console.log(error);
+
+            throw new Error("No Ethereum object");
         }
     }
 
@@ -95,21 +69,24 @@ export const TransactionProvider = ({children}) => {
                 }
             } catch (error) {
                 console.log(error);
+
+                throw new Error("No Ethereum object");
             }
     }
 
     const transactionHistory = async () => {
         try {
             if (ethereum) {
-                    etherscanProvider.getHistory(currentAccount).then((history) => {
-                        setHistory(history);
-                        console.log(history);
+                etherscanProvider.getHistory(currentAccount).then((history) => {
+                    setHistory(history);
                     });
             } else {
                 console.log("Retrieving transactions failed");
             }
         } catch (error) {
             console.log(error);
+
+            throw new Error("No Ethereum object");
         }
     }
 
@@ -127,32 +104,16 @@ export const TransactionProvider = ({children}) => {
             }
         } catch (error) {
             console.log(error);
+
+            throw new Error("No Ethereum object");
         }
     };
-
-    /*
-    const checkTransactionsExistence = async () => {
-        try {
-            if (ethereum) {
-                const transactionContract = getEthereumContract();
-                const currentTransactionCount = await transactionContract.getTransactionCount();
-
-                window.localStorage.setItem("transactionCount", currentTransactionCount);
-            }
-        } catch (error) {
-            console.log(error);
-
-            throw new Error("Transaction check failed");
-        }
-    };
-
-     */
 
     const connectWallet = async () => {
         try {
             if(!ethereum) return alert("Please install either MetaMask or MathWallet Connect. Icons in the top left are links to the installation page");
 
-            const accounts = await  ethereum.request({method: 'eth_requestAccounts', });
+            const accounts = await  ethereum.request({method: 'eth_requestAccounts'});
 
             setCurrentAccount(accounts[0]);
 
@@ -189,12 +150,8 @@ export const TransactionProvider = ({children}) => {
                 console.log(`Success - ${transactionHash.hash}`);
                 setIsLoading(false);
                 window.alert(`Transaction Successful!\n TxID - ${transactionHash.hash}\nIf the window does not refresh after closing this alert, please refresh the page`)
-
-                const transactionsCount = await transactionContract.getTransactionCount();
-
-                setTransactionCount(transactionsCount.toNumber());
             } else {
-                console.log("No Ethereum Object");
+                console.log("Sending transaction failed");
             }
         } catch (error) {
             console.log(error);
@@ -206,9 +163,10 @@ export const TransactionProvider = ({children}) => {
 
     useEffect(() => {
         checkWalletConnection();
-        //checkTransactionsExistence();
+        getGasPrice();
+        accountBalance();
     },
-        [transactionCount]);
+        [setGas, gas, setBalance, balance]);
 
     return (
         <TransactionContext.Provider value={{
@@ -218,8 +176,6 @@ export const TransactionProvider = ({children}) => {
             setformData,
             handleChange,
             sendTransaction,
-            transactionCount,
-            //transactions,
             transactionHistory,
             history,
             balance,

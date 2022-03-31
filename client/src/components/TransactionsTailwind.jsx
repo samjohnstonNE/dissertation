@@ -129,21 +129,21 @@ const TransactionsTailwind = () => {
                 <p className="text-black left ml-9 my-2 dark:text-gray-300 font-thin italic">
                     Any data that is visible when an account is not connect is example data and the ID will be marked with "Example"
                     { currentAccount && (
-                    <button
-                        type="button"
-                        onClick={transactionHistory}
-                        className="float-right ml-20 mr-9 w-64 mt-1 p-1 bg-[#2952e3] rounded-md cursor-pointer hover:bg-[#2546bd]"
-                    >
-                        <p className="dark:text-white text-base text-white font-semibold">Retrieve Transaction History</p>
-                    </button>
+                        <button
+                            type="button"
+                            onClick={transactionHistory}
+                            className="float-right ml-20 mr-9 w-64 mt-1 p-1 bg-[#2952e3] rounded-md cursor-pointer hover:bg-[#2546bd]"
+                        >
+                            <p className="dark:text-white text-base text-white font-semibold">Retrieve Transaction History</p>
+                        </button>
                     )}
                 </p>
                 { currentAccount ? (
-                <div className="flex flex-wrap justify-center items-center mt-3">
-                    {[...history].reverse().map((transaction) => (
-                        <TransactionsBlock key={history.hash} {...transaction} />
-                    ))}
-                </div>
+                    <div className="flex flex-wrap justify-center items-center mt-3">
+                        {[...history].reverse().map((transaction) => (
+                            <TransactionsBlock key={history.hash} {...transaction} />
+                        ))}
+                    </div>
                 ) : (
                     <div className="flex flex-wrap justify-center items-center mt-10" id="ten">
                         {[...dummyData].reverse().map((transaction, i) => (

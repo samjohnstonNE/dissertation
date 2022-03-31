@@ -65,7 +65,7 @@ const Main = () => {
                     </div>
                     <div className="flex flex-col flex-1 items-center justify-start w-full" id="seven">
                         <p className="text-black text-sm dark:text-gray-300">
-                            Address:  {address}
+                            Address: {address}
                         </p>
                         <p className="text-black text-sm dark:text-gray-300">
                             Balance: <b>{balance}</b>
