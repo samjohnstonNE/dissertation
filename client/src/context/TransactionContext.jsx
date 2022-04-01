@@ -27,6 +27,7 @@ export const TransactionProvider = ({children}) => {
     const [gasO, setGasO] = useState([]);
     const [eth, setEth] = useState([]);
     const [supply, setSupply] = useState([]);
+    //const [transactions, setTransactions] = useState([]);
 
     const handleChange = (e, name) => {
         setformData((prevState) => ({...prevState, [name]: e.target.value}));
@@ -192,6 +193,39 @@ export const TransactionProvider = ({children}) => {
         }
     }
 
+    /*
+    const getTransactionHistory = () => {
+        try {
+            if (ethereum) {
+                let url = "https://api.etherscan.io/api?module=account&action=txlist&address=" + currentAccount + "&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=" + apiKey
+
+                fetch(url)
+                    .then( (response) => {
+                        if (response.status === 200) {
+                            return response.json()
+                        } else {
+                            throw Error(response.statusText);
+                        }
+                    })
+                    .then ((data) => {
+                        console.log(data.result)
+                        setTransactions([data.result])
+                    })
+                    .catch ((err) => {
+                        console.log("something went wrong ", err)
+                    });
+            } else {
+                console.log("Retrieving Current Supply Failed");
+            }
+        } catch (error) {
+            console.log(error);
+
+            throw new Error("No Ethereum object");
+        }
+    }
+
+     */
+
     const checkWalletConnection = async  () => {
         try {
             if (!ethereum) return alert("Please install either MetaMask or MathWallet Connect. Icons in the top left are links to the installation pages");
@@ -303,6 +337,7 @@ export const TransactionProvider = ({children}) => {
             getCurrentSupply,
             supply,
             refresh
+            //getTransactionHistory
         }}>
             {children}
         </TransactionContext.Provider>

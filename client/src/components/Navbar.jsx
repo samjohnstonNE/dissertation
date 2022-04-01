@@ -8,24 +8,12 @@ import EtherScanDark from "../../images/etherscan-logo-light-circle.png";
 import { TransactionContext } from "../context/TransactionContext";
 import { tooltipStyle } from "../styles/styles";
 
-/*
-const GasTracker = ({ result }) => {
-
-    return (
-        <div className="pl-4">
-            <p className="dark:text-gray-300 text-xs text-left text-white text-base">{result}</p>
-        </div>
-    )
-}
-
- */
-
 
 const Navbar = () => {
 
     const [ toggleMenu, setToggleMenu ] = useState(false);
 
-    const { connectWallet, currentAccount, gas, getGasPrice, accountBalance, gasO, supply, eth, refresh } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, gas, gasO, supply, eth, refresh, getTransactionHistory } = useContext(TransactionContext);
 
     const toggleSteps = () => {
         location.reload();
@@ -75,20 +63,12 @@ const Navbar = () => {
                 <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'Current Supply: ' + supply}</p>
             </div>
 
-            {/*
-            <div className="pl-4">
-                {[...gasO].map((gas2, i) => (
-                    <GasTracker key={i} {gas2} />
-                ))}
-            </div>
-            */}
-
             <section className="md:flex-[1.0] pl-4">
             </section>
 
             <ul className="float-right p-2 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
                 <li className="float-right p-2 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial" id="four">
-                    <button onClick={refresh} className="pl-5">
+                    <button onClick={getTransactionHistory} className="pl-5">
                         Refresh Data
                     </button>
                     <button onClick={() => toggleSteps(true)} className="pl-5">
@@ -122,11 +102,8 @@ const Navbar = () => {
                         <li className="text-xl w-full my-2">
                             <AiOutlineClose onClick={() => setToggleMenu(false)} />
                         </li>
-                        <button onClick={accountBalance} className="pl-5">
-                            Balance
-                        </button>
-                        <button onClick={getGasPrice} className="pl-4">
-                            Gas Price
+                        <button onClick={refresh} className="pl-5">
+                            Refresh Data
                         </button>
                         <button onClick={() => toggleSteps(true)} className="pl-4">
                             Tutorial
