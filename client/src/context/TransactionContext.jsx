@@ -129,6 +129,7 @@ export const TransactionProvider = ({children}) => {
                     })
                     .then ((data) => {
                         setEth([
+                            "$" +
                             data.result.ethusd +
                             " | " +
                             "ETH/BTC: " +
@@ -197,7 +198,7 @@ export const TransactionProvider = ({children}) => {
     const getTransactionHistory = () => {
         try {
             if (ethereum) {
-                let url = "https://api.etherscan.io/api?module=account&action=txlist&address=" + currentAccount + "&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=" + apiKey
+                let url = "https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=" + currentAccount + "&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=" + apiKey
 
                 fetch(url)
                     .then( (response) => {
@@ -209,7 +210,7 @@ export const TransactionProvider = ({children}) => {
                     })
                     .then ((data) => {
                         console.log(data.result)
-                        setTransactions([data.result])
+                        setTransactions(data.result)
                     })
                     .catch ((err) => {
                         console.log("something went wrong ", err)
@@ -223,8 +224,7 @@ export const TransactionProvider = ({children}) => {
             throw new Error("No Ethereum object");
         }
     }
-
-     */
+    */
 
     const checkWalletConnection = async  () => {
         try {
@@ -337,7 +337,8 @@ export const TransactionProvider = ({children}) => {
             getCurrentSupply,
             supply,
             refresh
-            //getTransactionHistory
+            //getTransactionHistory,
+            //transactions
         }}>
             {children}
         </TransactionContext.Provider>
