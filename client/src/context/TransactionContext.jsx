@@ -16,7 +16,7 @@ import { contractABI, contractAddress, apiKey } from "../utils/constants";
  *
  * @author Sam Johnston
  * @id W17004648
- * @github https://github.com/SamwiseNE
+ * @github https://github.com/SamwiseNE/dissertation
  */
 
 
