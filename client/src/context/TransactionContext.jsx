@@ -2,11 +2,32 @@ import React, { useEffect, useState } from "react";
 import { ethers } from 'ethers';
 import { contractABI, contractAddress, apiKey } from "../utils/constants";
 
+/**
+ * Transaction Context
+ *
+ * Performs the transactions and provides all the data for the application.
+ *
+ * This component consists of functions that are linked to the blockchain
+ * and perform fetching ,sending and setting data tasks.
+ * The transaction provider is wrapped around the application in the main.jsx file.
+ * Each function and variable is passed through the provider at the bottom of the file
+ * and can be imported on every component. Each variable containing data is set using useState and
+ * some functions are included in the useEffect to load whenever the page refreshes.
+ *
+ * @author Sam Johnston
+ * @id W17004648
+ * @github https://github.com/SamwiseNE
+ */
+
+
 export const TransactionContext = React.createContext(0);
-const { ethereum } = window;
-const etherscanProvider = new ethers.providers.EtherscanProvider("ropsten", apiKey);
+
+const { ethereum } = window; //Creates a web3 ethereum window
+
+const etherscanProvider = new ethers.providers.EtherscanProvider("ropsten", apiKey); //Sets the provider to the ropsten using an etherscan apikey and ethers library
 
 
+/* Initialise Ethereum Window to pass details to contract */
 const getEthereumContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
@@ -33,6 +54,7 @@ export const TransactionProvider = ({children}) => {
         setformData((prevState) => ({...prevState, [name]: e.target.value}));
     };
 
+    /* Fetches and sets account balance based on current wallet connected */
     const accountBalance = () => {
         try {
             if (ethereum) {
@@ -40,6 +62,8 @@ export const TransactionProvider = ({children}) => {
 
                     // balance is a BigNumber (in wei); format is as a sting (in ether)
                     let eth = ethers.utils.formatEther(balance);
+
+                    // limit the balance number to 5 characters for better readability
                     let shortBal = eth.slice(0, 5)
 
                     setBalance(shortBal + ' ETH')
@@ -54,12 +78,16 @@ export const TransactionProvider = ({children}) => {
         }
     }
 
+    /* Fetches and sets gas price from Etherscan using the ethers library */
     const getGasPrice = () => {
         try {
             if (ethereum) {
                 etherscanProvider.getGasPrice().then((gasPrice) => {
 
+                    // gasPrice is a BigNumber (in wei); format is as a sting (in gwei) and  use of | operator
                     let gasG = ethers.utils.formatUnits(gasPrice, "gwei") | ethers.utils.formatUnits(gasPrice)
+
+                    // format gasPrice for a value in ETH
                     let gasETH = ethers.utils.formatUnits(gasPrice)
 
                     setGas(gasETH + ' ETH | ' + gasG + ' gwei')
@@ -75,10 +103,11 @@ export const TransactionProvider = ({children}) => {
 
     }
 
+    /* Fetches and sets the low, average and high gas price from the last the etherscan oracle database */
     const getGasPriceOracle = () => {
         try {
             if (ethereum) {
-                let url = "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=" + apiKey
+                let url = "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=" + apiKey //Mainnet Oracle database using apikey
 
                 fetch(url)
                     .then( (response) => {
@@ -114,6 +143,7 @@ export const TransactionProvider = ({children}) => {
         }
     }
 
+    /* Fetches and sets Ethereum's last known price as USD and BTC from the etherscan database */
     const getEthCurrentPrice = () => {
         try {
             if (ethereum) {
@@ -149,6 +179,7 @@ export const TransactionProvider = ({children}) => {
         }
     }
 
+    /* Fetches and sets the current circulating supply of Ethereum from the etherscan database */
     const getCurrentSupply = () => {
         try {
             if (ethereum) {
@@ -178,6 +209,7 @@ export const TransactionProvider = ({children}) => {
         }
     }
 
+    /* Fetches and sets all transactions of current account from Etherscan using the ethers library */
     const transactionHistory = async () => {
         try {
             if (ethereum) {
@@ -226,6 +258,8 @@ export const TransactionProvider = ({children}) => {
     }
     */
 
+    /* Checks that a web3 extension is installed in the browser with a connected unlocked account
+    * async function to wait and check before setting current account */
     const checkWalletConnection = async  () => {
         try {
             if (!ethereum) return alert("Please install either MetaMask or MathWallet Connect. Icons in the top left are links to the installation pages");
@@ -245,6 +279,8 @@ export const TransactionProvider = ({children}) => {
         }
     };
 
+    /* Connects the application to a web3 browser extension
+    * async function to wait and check before setting current account */
     const connectWallet = async () => {
         try {
             if(!ethereum) return alert("Please install either MetaMask or MathWallet Connect. Icons in the top left are links to the installation page");
@@ -261,12 +297,14 @@ export const TransactionProvider = ({children}) => {
         }
     };
 
+    /* Performs transaction request using smart contract function  */
     const sendTransaction = async () => {
         try {
             if (ethereum) {
+                // variables passed for the input section as
                 const { addressTo, amount, message } = formData;
-                const transactionContract = getEthereumContract();
-                const parsedAmount = ethers.utils.parseEther(amount);
+                const transactionContract = getEthereumContract(); // calls smart contract
+                const parsedAmount = ethers.utils.parseEther(amount); // amount to send (ether)
 
                 await ethereum.request({
                     method: 'eth_sendTransaction',
@@ -274,18 +312,19 @@ export const TransactionProvider = ({children}) => {
                         from: currentAccount,
                         to: addressTo,
                         gas: '0x5208', //21000 GWEI
-                        value: parsedAmount._hex, //0.00001
+                        value: parsedAmount._hex, //0.00001 ETH
                     }],
                 });
 
-                const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message);
+                const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message); // passes the variables from the input to the smart contract
 
+                // sets loading state to true for loading component to render (user feedback)
                 setIsLoading(true);
                 console.log(`Loading - ${transactionHash.hash}`);
                 await transactionHash.wait();
                 console.log(`Success - ${transactionHash.hash}`);
                 setIsLoading(false);
-                window.alert(`Transaction Successful!\n TxID - ${transactionHash.hash}\nIf the window does not refresh after closing this alert, please refresh the page`)
+                window.alert(`Transaction Successful!\n TxID - ${transactionHash.hash}\nIf the window does not refresh after closing this alert, please refresh the page`); // sets alert for user
             } else {
                 console.log("Sending transaction failed");
             }
@@ -296,6 +335,7 @@ export const TransactionProvider = ({children}) => {
         }
     };
 
+    /* Calls all fetching functions to refresh data */
     const refresh = () => {
         getCurrentSupply();
         getEthCurrentPrice();
@@ -304,7 +344,7 @@ export const TransactionProvider = ({children}) => {
         accountBalance();
     }
 
-
+    /* Functions passed through useEffect to run when page load */
     useEffect(() => {
         checkWalletConnection();
         getGasPrice();
