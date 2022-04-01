@@ -8,12 +8,24 @@ import EtherScanDark from "../../images/etherscan-logo-light-circle.png";
 import { TransactionContext } from "../context/TransactionContext";
 import { tooltipStyle } from "../styles/styles";
 
+/*
+const GasTracker = ({ result }) => {
+
+    return (
+        <div className="pl-4">
+            <p className="dark:text-gray-300 text-xs text-left text-white text-base">{result}</p>
+        </div>
+    )
+}
+
+ */
+
 
 const Navbar = () => {
 
-    const [toggleMenu, setToggleMenu ] = useState(false);
+    const [ toggleMenu, setToggleMenu ] = useState(false);
 
-    const { connectWallet, currentAccount, gas, getGasPrice, accountBalance } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, gas, getGasPrice, accountBalance, gasO, supply, eth, refresh } = useContext(TransactionContext);
 
     const toggleSteps = () => {
         location.reload();
@@ -57,19 +69,27 @@ const Navbar = () => {
             </div>
 
             <div className="pl-4">
-                <p className="dark:text-gray-300 text-xs text-left text-white text-base">{'Current Average Gas Price: ' + gas}</p>
+                <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'ETH: $' + eth}</p>
+                <p className="dark:text-gray-300 text-xs text-left text-white text-base">{'Current Gas Price: ' + gasO}</p>
+                <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'Test Network Gas Price: ' + gas}</p>
+                <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'Current Supply: ' + supply}</p>
             </div>
+
+            {/*
+            <div className="pl-4">
+                {[...gasO].map((gas2, i) => (
+                    <GasTracker key={i} {gas2} />
+                ))}
+            </div>
+            */}
 
             <section className="md:flex-[1.0] pl-4">
             </section>
 
             <ul className="float-right p-2 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
                 <li className="float-right p-2 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial" id="four">
-                    <button onClick={accountBalance} className="pl-5">
-                        Balance
-                    </button>
-                    <button onClick={getGasPrice} className="pl-5">
-                        Gas Price
+                    <button onClick={refresh} className="pl-5">
+                        Refresh Data
                     </button>
                     <button onClick={() => toggleSteps(true)} className="pl-5">
                         Tutorial

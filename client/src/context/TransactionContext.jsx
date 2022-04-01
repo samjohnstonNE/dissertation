@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from 'ethers';
-
 import { contractABI, contractAddress, apiKey } from "../utils/constants";
 
-
 export const TransactionContext = React.createContext(0);
-
 const { ethereum } = window;
-
 const etherscanProvider = new ethers.providers.EtherscanProvider("ropsten", apiKey);
 
 
@@ -19,6 +15,7 @@ const getEthereumContract = () => {
     return transactionContract;
 };
 
+
 export const TransactionProvider = ({children}) => {
 
     const [currentAccount, setCurrentAccount] =  useState('');
@@ -27,11 +24,13 @@ export const TransactionProvider = ({children}) => {
     const [history, setHistory] = useState([]);
     const [gas, setGas] = useState('');
     const [balance, setBalance] = useState('');
+    const [gasO, setGasO] = useState([]);
+    const [eth, setEth] = useState([]);
+    const [supply, setSupply] = useState([]);
 
     const handleChange = (e, name) => {
         setformData((prevState) => ({...prevState, [name]: e.target.value}));
     };
-
 
     const accountBalance = () => {
         try {
@@ -72,6 +71,109 @@ export const TransactionProvider = ({children}) => {
 
                 throw new Error("No Ethereum object");
             }
+
+    }
+
+    const getGasPriceOracle = () => {
+        try {
+            if (ethereum) {
+                let url = "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=" + apiKey
+
+                fetch(url)
+                    .then( (response) => {
+                        if (response.status === 200) {
+                            return response.json()
+                        } else {
+                            throw Error(response.statusText);
+                        }
+                    })
+                    .then ((data) => {
+                        setGasO([
+                            "Low: " +
+                            data.result.SafeGasPrice +
+                            " | " +
+                            "Average: " +
+                            data.result.ProposeGasPrice +
+                            " | " +
+                            "High: " +
+                            data.result.FastGasPrice +
+                            " "
+                        ])
+                    })
+                    .catch ((err) => {
+                        console.log("something went wrong ", err)
+                    });
+            } else {
+                console.log("Retrieving Gas Price failed");
+            }
+        } catch (error) {
+            console.log(error);
+
+            throw new Error("No Ethereum object");
+        }
+    }
+
+    const getEthCurrentPrice = () => {
+        try {
+            if (ethereum) {
+                let url = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=" + apiKey
+
+                fetch(url)
+                    .then( (response) => {
+                        if (response.status === 200) {
+                            return response.json()
+                        } else {
+                            throw Error(response.statusText);
+                        }
+                    })
+                    .then ((data) => {
+                        setEth([
+                            data.result.ethusd +
+                            " | " +
+                            "ETH/BTC: " +
+                            data.result.ethbtc
+                        ])
+                    })
+                    .catch ((err) => {
+                        console.log("something went wrong ", err)
+                    });
+            } else {
+                console.log("Retrieving Eth Price failed");
+            }
+        } catch (error) {
+            console.log(error);
+
+            throw new Error("No Ethereum object");
+        }
+    }
+
+    const getCurrentSupply = () => {
+        try {
+            if (ethereum) {
+                let url = "https://api.etherscan.io/api?module=stats&action=ethsupply&apikey=" + apiKey
+
+                fetch(url)
+                    .then( (response) => {
+                        if (response.status === 200) {
+                            return response.json()
+                        } else {
+                            throw Error(response.statusText);
+                        }
+                    })
+                    .then ((data) => {
+                        setSupply([data.result])
+                    })
+                    .catch ((err) => {
+                        console.log("something went wrong ", err)
+                    });
+            } else {
+                console.log("Retrieving Current Supply Failed");
+            }
+        } catch (error) {
+            console.log(error);
+
+            throw new Error("No Ethereum object");
+        }
     }
 
     const transactionHistory = async () => {
@@ -160,13 +262,24 @@ export const TransactionProvider = ({children}) => {
         }
     };
 
+    const refresh = () => {
+        getCurrentSupply();
+        getEthCurrentPrice();
+        getGasPriceOracle();
+        getGasPrice();
+        accountBalance();
+    }
+
 
     useEffect(() => {
         checkWalletConnection();
         getGasPrice();
+        getGasPriceOracle();
         accountBalance();
-    },
-        [setGas, gas, setBalance, balance]);
+        getEthCurrentPrice();
+        getCurrentSupply();
+        },
+        [ balance, gas ]);
 
     return (
         <TransactionContext.Provider value={{
@@ -182,9 +295,15 @@ export const TransactionProvider = ({children}) => {
             accountBalance,
             gas,
             getGasPrice,
-            isLoading
-        }}
-        >
+            isLoading,
+            getGasPriceOracle,
+            gasO,
+            getEthCurrentPrice,
+            eth,
+            getCurrentSupply,
+            supply,
+            refresh
+        }}>
             {children}
         </TransactionContext.Provider>
     );

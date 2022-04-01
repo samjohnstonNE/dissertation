@@ -140,8 +140,8 @@ const TransactionsTailwind = () => {
                 </p>
                 { currentAccount ? (
                     <div className="flex flex-wrap justify-center items-center mt-3">
-                        {[...history].reverse().map((transaction) => (
-                            <TransactionsBlock key={history.hash} {...transaction} />
+                        {[...history].reverse().map((transaction, i) => (
+                            <TransactionsBlock key={i} {...transaction} />
                         ))}
                     </div>
                 ) : (
