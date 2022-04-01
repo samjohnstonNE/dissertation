@@ -13,7 +13,7 @@ const Navbar = () => {
 
     const [ toggleMenu, setToggleMenu ] = useState(false);
 
-    const { connectWallet, currentAccount, gas, gasO, supply, eth, refresh, getTransactionHistory } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, gas, gasO, supply, eth, refresh } = useContext(TransactionContext);
 
     const toggleSteps = () => {
         location.reload();
@@ -57,7 +57,7 @@ const Navbar = () => {
             </div>
 
             <div className="pl-4">
-                <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'ETH: $' + eth}</p>
+                <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'ETH: ' + eth}</p>
                 <p className="dark:text-gray-300 text-xs text-left text-white text-base">{'Current Gas Price: ' + gasO}</p>
                 <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'Test Network Gas Price: ' + gas}</p>
                 <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'Current Supply: ' + supply}</p>
@@ -68,7 +68,7 @@ const Navbar = () => {
 
             <ul className="float-right p-2 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
                 <li className="float-right p-2 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial" id="four">
-                    <button onClick={getTransactionHistory} className="pl-5">
+                    <button onClick={refresh} className="pl-5">
                         Refresh Data
                     </button>
                     <button onClick={() => toggleSteps(true)} className="pl-5">
