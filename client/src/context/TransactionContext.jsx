@@ -19,13 +19,11 @@ import { contractABI, contractAddress, apiKey } from "../utils/constants";
  * @github https://github.com/SamwiseNE/dissertation
  */
 
-
 export const TransactionContext = React.createContext(0);
 
 const { ethereum } = window; //Creates a web3 ethereum window
 
 const etherscanProvider = new ethers.providers.EtherscanProvider("ropsten", apiKey); //Sets the provider to the ropsten using an etherscan apikey and ethers library
-
 
 /* Initialise Ethereum Window to pass details to contract */
 const getEthereumContract = () => {
