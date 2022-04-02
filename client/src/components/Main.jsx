@@ -4,6 +4,7 @@ import Input from "./Input";
 import { useWeb3 } from "@3rdweb/hooks";
 import { TransactionContext } from "../context/TransactionContext";
 import Loading from "./Loading";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 
 /**
  * Main
@@ -46,13 +47,13 @@ const Main = () => {
                 <div className="flex flex-1 justify-start items-start flex-col md:mr-10">
 
                     <h1 className="dark:text-gray-300 text-3xl sm:text-5xl text-black py-1">
-                        Send Crypto. <br /> Wherever, Whenever.
+                        Send Crypto <br /> Wherever, Whenever
                     </h1>
                     <p className="dark:text-gray-300 text-left mt-4 text-black md:w-9/12 w-11/12 text-base">
-                        Explorer the crypto world. Buy and sell crypto currencies.
+                        Explorer the crypto world. Buy and sell crypto currencies
                     </p>
                     <p className="dark:text-gray-300 text-left mt-4 text-black md:w-9/12 w-11/12 text-base">
-                        The web wallet for both beginners and experienced users.
+                        The web wallet for both beginners and experienced users
                     </p>
                     <p className="dark:text-gray-300 text-left mt-4 text-black md:w-9/12 w-11/12 dark:font-thin italic">
                         *This app includes a visual walkthrough and other a few features to help you understand how to create a live crypto transaction*
@@ -65,11 +66,16 @@ const Main = () => {
                         className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
                         id="six"
                         >
-                        <p className="dark:text-white text-base text-white font-semibold">Connect Web3.0 Wallet</p>
+                        <p className="dark:text-gray-300 text-base text-white font-semibold">Connect Web3.0 Wallet</p>
                     </button>
                     )}
                     <p className="dark:text-gray-300 text-left mt-8 text-black md:w-9/12 w-11/12 dark:font-thin italic">
-                        *Use of the navigation bar functions in the top right to refresh the gas price or wallet balance*
+                        *Use of the navigation bar functions in the top right to refresh any ethereum data*
+                    </p>
+
+                    <AiOutlineInfoCircle fontSize={18} className='text-black dark:text-gray-300 mt-8' />
+                    <p className="dark:text-gray-300 text-left mt-8 text-black md:w-9/12 w-11/12 dark:font-thin italic">
+                        *Use of the navigation bar functions in the top right to refresh any ethereum data*
                     </p>
                 </div>
 

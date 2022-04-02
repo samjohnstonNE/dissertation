@@ -43,7 +43,7 @@ const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestam
                         <div className={transactionBox2}>
                             <dt className={datatableStyle}>Block Number:</dt>
                             <a href={`https://ropsten.etherscan.io/block/${blockNumber}`} target="_blank" rel="noopener noreferrer">
-                                <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2 " id="" key="blockNumber">{blockNumber}</dd>
+                                <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="" key="blockNumber">{blockNumber}</dd>
                             </a>
                         </div>
                         <div className={transactionBox1}>
@@ -76,7 +76,7 @@ const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestam
                         </div>
                         <div className={transactionBox2}>
                             <dt className={datatableStyle}>Message:</dt>
-                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="" key="">{data}</dd>
+                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2 overflow-x-auto" id="" key="">{data}</dd>
                         </div>
                         <div className={transactionBox1}>
                             <dt className={datatableStyle}>Confirmations:</dt>
@@ -131,39 +131,41 @@ const TransactionsTailwind = () => {
 
     return(
         <div className="flex w-full justify-center items-center 2xl:px-20 bg-[#efeff4] dark:bg-[#0f172a]">
-            <div className="flex flex-col md:p-12 py-12 px-4">
+            <div className="flex flex-col md:px-20 py-4 px-4 w-full">
                 { currentAccount ? (
-                    <h3 className="text-black ml-9 text-3xl text-left my-2 dark:text-gray-300">
-                        Latest Transactions
-                    </h3>
-                ) : (
-                    <h3 className="text-black text-3xl text-center my-2 dark:text-gray-300">
-                        Connect your account to see the latest transactions
-                    </h3>
-                )}
-                <p className="text-black left ml-9 my-2 dark:text-gray-300 font-thin italic">
-                    Any data that is visible when an account is not connect is example data and the ID will be marked with "Example"
-                    { currentAccount && (
+                    <div>
+                        <h3 className="text-black ml-9 text-3xl text-left my-2 dark:text-gray-300">
+                            Latest Transactions
+                        </h3>
                         <button
                             type="button"
                             onClick={transactionHistory}
-                            className="float-right ml-20 mr-9 w-64 mt-1 p-1 bg-[#2952e3] rounded-md cursor-pointer hover:bg-[#2546bd]"
+                            className="float-right mr-9 w-64 p-1 bg-[#2952e3] rounded-md cursor-pointer hover:bg-[#2546bd]"
                         >
-                            <p className="dark:text-white text-base text-white font-semibold">Retrieve Transaction History</p>
+                            <p className="text-base text-white font-semibold">Retrieve Transaction History</p>
                         </button>
-                    )}
-                </p>
-                { currentAccount ? ( // Mapped in reverse to show the latest transactions at top
-                    <div className="flex flex-wrap justify-center items-center mt-3">
-                        {[...history].reverse().map((transaction, i) => (
-                            <TransactionsBlock key={i} {...transaction} />
-                        ))}
+                        <p className="text-black left ml-9 mr-2 my-2 dark:text-gray-300 font-thin italic">
+                            All transactions for the current wallet will be fetched using the Etherscan API
+                        </p>
+                        <div className="flex flex-wrap justify-center items-center py-4">
+                            {[...history].reverse().map((transaction, i) => (
+                                <TransactionsBlock key={i} {...transaction} />
+                            ))}
+                        </div>
                     </div>
                 ) : (
-                    <div className="flex flex-wrap justify-center items-center mt-10" id="ten">
-                        {[...dummyData].reverse().map((transaction, i) => (
-                            <TransactionsBlock key={i} {...transaction} />
-                        ))}
+                    <div>
+                        <h3 className="text-black text-3xl text-center my-2 dark:text-gray-300">
+                            Connect your account to see the latest transactions
+                        </h3>
+                        <p className="text-black text-center my-2 dark:text-gray-300 font-thin italic">
+                            Any data that is visible when an account is not connect is example data and the ID will be marked with "Example"
+                        </p>
+                        <div className="flex flex-wrap justify-center items-center mt-10" id="ten">
+                            {[...dummyData].reverse().map((transaction, i) => (
+                                <TransactionsBlock key={i} {...transaction} />
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>

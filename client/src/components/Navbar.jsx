@@ -86,8 +86,8 @@ const Navbar = () => {
             <section className="md:flex-[1.0] pl-4">
             </section>
 
-            <ul className="float-right p-2 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
-                <li className="float-right p-2 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial" id="four">
+            <ul className="float-right p-2 dark:text-gray-300 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
+                <li className="float-right p-2 dark:text-gray-300 text-white md:flex hidden list-none flex-row justify-between items-center flex-initial" id="four">
                     <button onClick={refresh} className="pl-5">
                         Refresh Data
                     </button>
