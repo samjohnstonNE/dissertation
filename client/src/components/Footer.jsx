@@ -1,5 +1,13 @@
 
-
+/**
+ * Footer
+ *
+ * Footer contains contact information and link LinkedIn and GitHub
+ *
+ * @author Sam Johnston
+ * @id W17004648
+ * @github https://github.com/SamwiseNE/dissertation
+ */
 
 const Footer = () => {
 

@@ -1,6 +1,6 @@
 import { Navbar, Main, TransactionsTailwind, Footer } from "./components";
 import { ThirdwebWeb3Provider } from '@3rdweb/hooks';
-import React, {useState} from "react";
+import React, { useState } from "react";
 import 'flowbite';
 import "intro.js/introjs.css";
 import { Steps } from 'intro.js-react';
@@ -8,29 +8,33 @@ import stepList  from "./utils/stepList";
 
 
 const App = ({children}) => {
+  // enable supported chains (Mainnet, Ropsten, Rinkeby, Goerli, Kovan)
   const supportedChainIds = [1, 3, 4, 5, 42];
 
+
+  // MetaMask Connector
   const connectors = {
-    injected: {},
-    walletconnect: {},
+    injected: {}
   };
 
+  // Intro.JS enabled on page load
   const [ enabled, setEnabled ] = useState(true);
+
+  // First step is 0
   const [ initialStep, ] = useState(0);
 
   const onExit = () => {
     setEnabled(false)
   }
 
-
-  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  // Sets page theme based to dark if preference
   if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.documentElement.classList.add('dark')
   } else {
     document.documentElement.classList.remove('dark')
   }
 
-// Whenever the user explicitly chooses to respect the OS preference
+  // Whenever the user explicitly chooses to respect the OS preference
   localStorage.removeItem('theme')
 
 
@@ -47,7 +51,7 @@ const App = ({children}) => {
             initialStep={initialStep}
             onExit={onExit}
         />
-        <script src="../path/to/flowbite/dist/flowbite.js"></script>
+        <script src="../path/to/flowbite/dist/flowbite.js"></script> {/* Flowbite script for tooltips */}
         <Navbar />
         <Main />
       </div>

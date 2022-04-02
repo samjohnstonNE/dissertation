@@ -10,15 +10,16 @@ import Loading from "./Loading";
  *
  * This is the main component that includes the input section for transactions.
  *
- * This component is the main area of the application that displays wallet address, balance and chain ID
- * using variables passed from the TransactionContext: the wallet address is displayed in full length format.
- * The Input component is called and is used to pass data to the transaction function in the application.
+ * This component is the main area of the application that displays wallet address,
+ * balance and chain ID using variables passed from the TransactionContext:
+ * the wallet address is displayed in full length format.
+ * The Input component is called and is used to pass data to the transaction
+ * function in the application.
  *
  * @author Sam Johnston
  * @id W17004648
  * @github https://github.com/SamwiseNE/dissertation
  */
-
 
 const Main = () => {
 

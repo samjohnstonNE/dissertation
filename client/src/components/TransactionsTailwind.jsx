@@ -2,7 +2,22 @@ import React, { useContext } from "react";
 import { TransactionContext } from "../context/TransactionContext";
 import dummyData  from "../utils/dummyData";
 import { ethers } from "ethers";
-import { datatableStyle, transactionBox1, transactionBox2} from "../styles/styles";
+import { datatableStyle, transactionBox1, transactionBox2 } from "../styles/styles"; // common styles are saved and import to provide better visibility of code
+
+/**
+ * TransactionsTailwind
+ *
+ * This component displays all transaction data for the current wallet connected.
+ *
+ * Example data is displayed when a web3 ethereum connection is not present.
+ * Real transaction data can be fetched once a connection is made using
+ * the call feature. The data is fetched from the Etherscan api and mapped to
+ * the TransactionBlock and styled.
+ *
+ * @author Sam Johnston
+ * @id W17004648
+ * @github https://github.com/SamwiseNE/dissertation
+ */
 
 const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestamp, to, hash, addressFrom, addressTo, amount, message, timestamp1, id, gasPrice, value, data })  => {
 
@@ -138,7 +153,7 @@ const TransactionsTailwind = () => {
                         </button>
                     )}
                 </p>
-                { currentAccount ? (
+                { currentAccount ? ( // Mapped in reverse to show the latest transactions at top
                     <div className="flex flex-wrap justify-center items-center mt-3">
                         {[...history].reverse().map((transaction, i) => (
                             <TransactionsBlock key={i} {...transaction} />

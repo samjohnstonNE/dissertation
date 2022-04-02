@@ -8,11 +8,31 @@ import EtherScanDark from "../../images/etherscan-logo-light-circle.png";
 import { TransactionContext } from "../context/TransactionContext";
 import { tooltipStyle } from "../styles/styles";
 
+/**
+ * Navbar
+ *
+ * Navbar contains links to web3 extensions, blockchain explorer, ethereum data, refresh, tutorial and connect button.
+ *
+ * This component has links to web3 extensions (MetaMask, Math Wallet),
+ * blockchain explorer (Etherscan.io) and Ethereum data (Eth price, Current gas price,
+ * Test network gas price, and Current circulating supply) on the left.
+ * The ethereum data is fetched upon page load using the Etherscan api.
+ * All links on the left have a tooltip (usability)
+ * The right side has a data refresh, tutorial refresh button and connect
+ * wallet button (visible when not connected).
+ * Small screen menu
+ *
+ * @author Sam Johnston
+ * @id W17004648
+ * @github https://github.com/SamwiseNE/dissertation
+ */
 
 const Navbar = () => {
 
+    // Small screen menu is disabled by default
     const [ toggleMenu, setToggleMenu ] = useState(false);
 
+    // functions and variables passed from the
     const { connectWallet, currentAccount, gas, gasO, supply, eth, refresh } = useContext(TransactionContext);
 
     const toggleSteps = () => {
@@ -91,7 +111,7 @@ const Navbar = () => {
                 )}
             </ul>
             <div className="flex relative float-right">
-            {toggleMenu
+            {toggleMenu // Small screen menu
                 ? <AiOutlineClose fontSize={28} className="text-white md:hidden cursor-pointer" onClick={() => setToggleMenu(false)} />
                 : <HiMenuAlt4 fontSize={28} className="text-white md:hidden cursor-pointer" onClick={() => setToggleMenu(true)} />
             }
@@ -108,9 +128,17 @@ const Navbar = () => {
                         <button onClick={() => toggleSteps(true)} className="pl-4">
                             Tutorial
                         </button>
-                        <li className="bg-[#2952e3] py-2 px-7 mx-3 rounded-full cursor-pointer hover:bg-[#2546bd]">
-                            Login
+                        {!currentAccount && (
+                        <li className="pl-5">
+                            <button
+                                type="button"
+                                onClick={connectWallet}
+                                id="five"
+                            >
+                                <p className="font-semibold">Connect</p>
+                            </button>
                         </li>
+                        )}
                     </ul>
                 )}
             </div>
