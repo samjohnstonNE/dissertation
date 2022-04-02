@@ -5,26 +5,39 @@ import { useWeb3 } from "@3rdweb/hooks";
 import { TransactionContext } from "../context/TransactionContext";
 import Loading from "./Loading";
 
+/**
+ * Main
+ *
+ * This is the main component that includes the input section for transactions.
+ *
+ * This component is the main area of the application that displays wallet address, balance and chain ID
+ * using variables passed from the TransactionContext: the wallet address is displayed in full length format.
+ * The Input component is called and is used to pass data to the transaction function in the application.
+ *
+ * @author Sam Johnston
+ * @id W17004648
+ * @github https://github.com/SamwiseNE/dissertation
+ */
+
 
 const Main = () => {
 
+    // functions and variables passed from the transaction context
     const { connectWallet, currentAccount, formData, sendTransaction, handleChange, balance, isLoading } = useContext(TransactionContext);
 
+    // used to read the wallet address - useWeb3(faster and more reliable)
     const { address, chainId } = useWeb3();
 
-    //const shortAdd = `${address.slice(0, 5)}...${address.slice(address.length - 4)}`;
-
+    // handleSubmit to pass the data input for the transaction
     const handleSubmit = (e) => {
         const { addressTo, amount, message } = formData;
 
         e.preventDefault();
-
+        // validation check
         if(!addressTo || !amount || !message) return;
 
         sendTransaction();
     }
-
-
 
     return(
         <div className="flex w-full justify-center items-center bg-[#efeff4] dark:bg-[#0f172a]">
@@ -44,7 +57,7 @@ const Main = () => {
                         *This app includes a visual walkthrough and other a few features to help you understand how to create a live crypto transaction*
                     </p>
 
-                    {!currentAccount && (
+                    {!currentAccount && ( // only display if account isn't connected
                         <button
                         type="button"
                         onClick={connectWallet}
@@ -79,7 +92,7 @@ const Main = () => {
                         <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} />
                         <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} />
                         <div className="h-[1px] w-full bg-grey-400 my-2"/>
-                        {isLoading
+                        {isLoading // display loading component when state is true
                             ? <Loading />
                             : (
                             <button
