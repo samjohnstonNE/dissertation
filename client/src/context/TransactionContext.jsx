@@ -78,7 +78,7 @@ export const TransactionProvider = ({children}) => {
         }
     }
 
-    /* Fetches and sets gas price from Etherscan using the ethers library */
+    /* Fetches and sets gas price from Etherscan using the ethers library (experimental) */
     const getGasPrice = () => {
         try {
             if (ethereum) {
@@ -110,7 +110,7 @@ export const TransactionProvider = ({children}) => {
                 let url = "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=" + apiKey //Mainnet Oracle database using apikey
 
                 fetch(url)
-                    .then( (response) => {
+                    .then((response) => {
                         if (response.status === 200) {
                             return response.json()
                         } else {
@@ -127,7 +127,9 @@ export const TransactionProvider = ({children}) => {
                             " | " +
                             "High: " +
                             data.result.FastGasPrice +
-                            " "
+                            " | " +
+                            "Suggest Base Fee : " +
+                            [data.result.suggestBaseFee | data.result.suggestBaseFee]
                         ])
                     })
                     .catch ((err) => {
@@ -150,14 +152,14 @@ export const TransactionProvider = ({children}) => {
                 let url = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=" + apiKey
 
                 fetch(url)
-                    .then( (response) => {
+                    .then((response) => {
                         if (response.status === 200) {
                             return response.json()
                         } else {
                             throw Error(response.statusText);
                         }
                     })
-                    .then ((data) => {
+                    .then((data) => {
                         setEth([
                             "$" +
                             data.result.ethusd +
@@ -186,14 +188,14 @@ export const TransactionProvider = ({children}) => {
                 let url = "https://api.etherscan.io/api?module=stats&action=ethsupply&apikey=" + apiKey
 
                 fetch(url)
-                    .then( (response) => {
+                    .then((response) => {
                         if (response.status === 200) {
                             return response.json()
                         } else {
                             throw Error(response.statusText);
                         }
                     })
-                    .then ((data) => {
+                    .then((data) => {
                         setSupply([data.result])
                     })
                     .catch ((err) => {
@@ -344,7 +346,7 @@ export const TransactionProvider = ({children}) => {
         accountBalance();
     }
 
-    /* Functions passed through useEffect to run when page load */
+    /* Functions passed through useEffect to run when page loads */
     useEffect(() => {
         checkWalletConnection();
         getGasPrice();
