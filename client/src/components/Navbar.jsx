@@ -79,7 +79,7 @@ const Navbar = () => {
             <div className="pl-4">
                 <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'ETH: ' + eth}</p>
                 <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'Current Gas Price: ' + gasO}</p>
-                <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'Test Network Gas Price: ' + gas}</p>
+                <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'Experimental Gas Price: ' + gas}</p>
                 <p className="dark:text-gray-300 text-xs text-left text-white text-base mt-0.5">{'Current Supply: ' + supply}</p>
             </div>
 
