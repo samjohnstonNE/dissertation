@@ -4,7 +4,7 @@ import Input from "./Input";
 import { useWeb3 } from "@3rdweb/hooks";
 import { TransactionContext } from "../context/TransactionContext";
 import Loading from "./Loading";
-import { AiOutlineInfoCircle } from "react-icons/ai";
+import Glossary  from "./Glossary";
 
 /**
  * Main
@@ -72,11 +72,7 @@ const Main = () => {
                     <p className="dark:text-gray-300 text-left mt-8 text-black md:w-9/12 w-11/12 dark:font-thin italic">
                         *Use of the navigation bar functions in the top right to refresh any ethereum data*
                     </p>
-
-                    <AiOutlineInfoCircle fontSize={18} className='text-black dark:text-gray-300 mt-8' />
-                    <p className="dark:text-gray-300 text-left mt-8 text-black md:w-9/12 w-11/12 dark:font-thin italic">
-                        *Use of the navigation bar functions in the top right to refresh any ethereum data*
-                    </p>
+                    <Glossary />
                 </div>
 
                 <div className="flex flex-col flex-1 items-center justify-start w-full md:mt-0 mt-10 pl-4">

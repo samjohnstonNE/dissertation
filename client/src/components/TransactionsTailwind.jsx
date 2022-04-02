@@ -71,11 +71,11 @@ const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestam
                             </dd>
                         </div>
                         <div className={transactionBox1}>
-                            <dt className={datatableStyle}>Amount:</dt>
+                            <dt className={datatableStyle}>Value:</dt>
                             <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="" key="">{ethers.utils.formatEther(value)} ETH</dd>
                         </div>
                         <div className={transactionBox2}>
-                            <dt className={datatableStyle}>Message:</dt>
+                            <dt className={datatableStyle}>Input:</dt>
                             <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2 overflow-x-auto" id="" key="">{data}</dd>
                         </div>
                         <div className={transactionBox1}>
@@ -145,7 +145,7 @@ const TransactionsTailwind = () => {
                             <p className="text-base text-white font-semibold">Retrieve Transaction History</p>
                         </button>
                         <p className="text-black left ml-9 mr-2 my-2 dark:text-gray-300 font-thin italic">
-                            All transactions for the current wallet will be fetched using the Etherscan API
+                            All successful transactions for the current connected wallet will be fetched using the Etherscan API
                         </p>
                         <div className="flex flex-wrap justify-center items-center py-4">
                             {[...history].reverse().map((transaction, i) => (
