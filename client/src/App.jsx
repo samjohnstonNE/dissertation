@@ -34,9 +34,6 @@ const App = ({children}) => {
     document.documentElement.classList.remove('dark')
   }
 
-  // Whenever the user explicitly chooses to respect the OS preference
-  localStorage.removeItem('theme')
-
 
   return (
 <ThirdwebWeb3Provider
