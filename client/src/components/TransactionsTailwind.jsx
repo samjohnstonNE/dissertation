@@ -16,7 +16,7 @@ import { datatableStyle, transactionBox1, transactionBox2 } from "../styles/styl
  *
  * @author Sam Johnston
  * @id W17004648
- * @github https://github.com/SamwiseNE/dissertation
+ * @github https://github.com/SamJohnstonNE/dissertation
  */
 
 const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestamp, to, hash, addressFrom, addressTo, amount, message, timestamp1, id, gasPrice, value, data })  => {

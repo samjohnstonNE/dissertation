@@ -19,7 +19,7 @@ import Glossary  from "./Glossary";
  *
  * @author Sam Johnston
  * @id W17004648
- * @github https://github.com/SamwiseNE/dissertation
+ * @github https://github.com/SamJohnstonNE/dissertation
  */
 
 const Main = () => {
@@ -28,7 +28,20 @@ const Main = () => {
     const { connectWallet, currentAccount, formData, sendTransaction, handleChange, balance, isLoading } = useContext(TransactionContext);
 
     // used to read the wallet address - useWeb3(faster and more reliable)
-    const { address, chainId } = useWeb3();
+    let { address, chainId } = useWeb3();
+
+    // Display the name of the network and the ID
+    if (chainId === 1) {
+        chainId = "Mainnet (1)"
+    } else if  (chainId === 3) {
+        chainId = "Ropsten (3)"
+    } else if(chainId === 4)  {
+        chainId = "Rinkeby (4)"
+    } else if (chainId === 5) {
+        chainId = "Goerli (5)"
+    } else if (chainId === 42) {
+        chainId = "Kovan (42)"
+    }
 
     // handleSubmit to pass the data input for the transaction
     const handleSubmit = (e) => {

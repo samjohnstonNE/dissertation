@@ -17,7 +17,7 @@ import { tooltipStyle } from "../styles/styles";
  *
  * @author Sam Johnston
  * @id W17004648
- * @github https://github.com/SamwiseNE/dissertation
+ * @github https://github.com/SamJohnstonNE/dissertation
  */
 
 const Glossary = () => {
