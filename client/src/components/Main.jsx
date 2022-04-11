@@ -92,18 +92,18 @@ const Main = () => {
                     <div className="w-20 h-20 rounded-full border-2 border-black flex justify-center items-center dark:border-gray-300 mb-5">
                         <SiEthereum fontSize={41} className="text-black dark:text-gray-300" />
                     </div>
-                    <div className="flex flex-col flex-1 items-center justify-start w-full" id="seven">
+                    <div className="flex flex-col flex-1 items-center justify-start w-full" id="eight">
                         <p className="text-black text-sm dark:text-gray-300">
                             Address: {address}
                         </p>
                         <p className="text-black text-sm dark:text-gray-300">
                             Balance: <b>{balance}</b>
                         </p>
-                        <p className="text-black text-sm dark:text-gray-300 mb-5" id="eight">
+                        <p className="text-black text-sm dark:text-gray-300 mb-5" id="nine">
                             Chain ID: {chainId}
                         </p>
                     </div>
-                    <div className="text-black p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism" id="nine">
+                    <div className="text-black p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism" id="ten">
                         <Input placeholder="Recipient Address" name="addressTo" type="text" handleChange={handleChange} />
                         <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} />
                         <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} />

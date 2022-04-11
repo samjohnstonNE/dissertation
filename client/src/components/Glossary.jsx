@@ -11,7 +11,7 @@ import { tooltipStyle } from "../styles/styles";
  * technical terms with an information icon next to each item.
  * The information icon can be hovered over to reveal a tooltip
  * with the explanation for each term.
- * The explanations are taken from the Etherscan transactions
+ * The explanations are taken from the Etherscan.io transactions
  * webpage as they provide an accurate description yet not
  * too complicated for beginner users.
  *
@@ -24,7 +24,7 @@ const Glossary = () => {
 
     return (
         <div>
-            <div className="grid sm:grid-cols-4 grid-cols-3 w-full mt-10">
+            <div className="grid sm:grid-cols-4 grid-cols-3 w-full mt-10" id="seven">
                 <p className="dark:text-gray-300 text-black dark:font-thin italic">
                     <AiOutlineInfoCircle fontSize={18} className='text-black float-right dark:text-gray-300 mx-2 mt-1 cursor-pointer' data-tooltip-target="tooltip-dark4"/>
                     <div id="tooltip-dark4" role="tooltip"
@@ -114,6 +114,25 @@ const Glossary = () => {
                         <div className="tooltip-arrow" data-popper-arrow />
                     </div>
                     Timestamp:
+                </p>
+                <p className="dark:text-gray-300 text-left  text-black dark:font-thin italic">
+                    <AiOutlineInfoCircle fontSize={18} className='text-black float-right dark:text-gray-300 mx-2 mt-1 cursor-pointer' data-tooltip-target="tooltip-dark14"/>
+                    <div id="tooltip-dark14" role="tooltip"
+                         className={tooltipStyle}>
+                        The amount of ETH that will be burnt (destroyed) for the transaction.
+                        The suggested minimum amount of gas that should be used in a transaction.
+                        <div className="tooltip-arrow" data-popper-arrow />
+                    </div>
+                    Base Fee:
+                </p>
+                <p className="dark:text-gray-300 text-left  text-black dark:font-thin italic">
+                    <AiOutlineInfoCircle fontSize={18} className='text-black float-right dark:text-gray-300 mx-2 mt-1 cursor-pointer' data-tooltip-target="tooltip-dark15"/>
+                    <div id="tooltip-dark15" role="tooltip"
+                         className={tooltipStyle}>
+                        The current amount of total ETH in circulation.
+                        <div className="tooltip-arrow" data-popper-arrow />
+                    </div>
+                    Current Supply:
                 </p>
             </div>
         </div>

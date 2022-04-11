@@ -31,57 +31,62 @@ export default [
         intro: 'Wallet extensions can be connected using this button',
     },
     {
-        title: 'Wallet Information',
+        title: 'Glossary',
         element: '#seven',
+        intro: 'A list of technical terms and their definitions',
+    },
+    {
+        title: 'Wallet Information',
+        element: '#eight',
         intro: 'This area shows account information for the wallet currently connected',
     },
     {
         title: 'Network',
-        element: '#eight',
-        intro: 'The Chain ID tells you which network you are currently connected too. E.g 1 = Main, 3 = Ropsten',
+        element: '#nine',
+        intro: 'The Chain ID tells you which network you are currently connected too. E.g 1 = Mainnet, 3 = Ropsten',
     },
     {
-        element: '#nine',
-        intro: 'This area is used to input the recipients address, amount of Ethereum in ETH and message (optional)',
+        element: '#ten',
+        intro: 'This area is used to input the recipients address, amount of Ethereum in ETH and message',
     },
     {
         title: 'Transactions',
-        element: '#ten',
+        element: '#eleven',
         intro: 'This area shows all transactions sent from your connected wallet',
     },
     {
         title: 'ID',
-        element: '#eleven',
+        element: '#twelve',
         intro: 'This is a ID is used to label the data as example data and while be changed to the blockchain chain ID when transactions are fetched',
     },
     {
         title: 'Your Address',
-        element: '#twelve',
+        element: '#thirteen',
         intro: 'This is a full wallet address from a previous transaction and can be clicked on to display more information on Etherscan',
     },
     {
         title: 'Recipients Address',
-        element: '#thirteen',
+        element: '#fourteen',
         intro: 'This address can also be clicked on to display more information on Etherscan',
     },
     {
         title: 'Amount',
-        element: '#fourteen',
+        element: '#fifteen',
         intro: 'This was the amount sent in ETH for that transaction',
     },
     {
         title: 'Message',
-        element: '#fifteen',
+        element: '#sixteen',
         intro: 'A message may appear just below the amount if one was sent in the transaction',
     },
     {
         title: 'Timestamp',
-        element: '#sixteen',
+        element: '#seventeen',
         intro: 'This was the timestamp of when the transaction was confirmed on the blockchain network',
     },
     {
         title: 'Real Transaction Information',
-        element: '#seventeen',
+        element: '#eightteen',
         intro: 'Real transaction data can be fetched once a wallet is connected and more field with data for the transactions will become available',
     }
 ];

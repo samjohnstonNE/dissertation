@@ -38,7 +38,7 @@ const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestam
                     <dl>
                         <div className={transactionBox1}>
                             <dt className={datatableStyle}>Chain ID:</dt>
-                            <dd className="mt-1 text-sm text-white font-bold dark:text-black sm:mt-0 sm:col-span-2" id="eleven" key="chainId">{chainId}</dd>
+                            <dd className="mt-1 text-sm text-white font-bold dark:text-black sm:mt-0 sm:col-span-2" id="twelve" key="chainId">{chainId}</dd>
                         </div>
                         <div className={transactionBox2}>
                             <dt className={datatableStyle}>Block Number:</dt>
@@ -55,13 +55,13 @@ const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestam
                         <div className={transactionBox2}>
                             <dt className={datatableStyle}>From:</dt>
                             <a href={`https://ropsten.etherscan.io/address/${from}`} target="_blank" rel="noopener noreferrer">
-                                <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="" key="from">{from}</dd>
+                                <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="thirteen" key="from">{from}</dd>
                             </a>
                         </div>
                         <div className={transactionBox1}>
                             <dt className={datatableStyle}>To:</dt>
                             <a href={`https://ropsten.etherscan.io/address/${to}`} target="_blank" rel="noopener noreferrer">
-                                <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="" key="to">{to}</dd>
+                                <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="fourteen" key="to">{to}</dd>
                             </a>
                         </div>
                         <div className={transactionBox2}>
@@ -72,11 +72,11 @@ const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestam
                         </div>
                         <div className={transactionBox1}>
                             <dt className={datatableStyle}>Value:</dt>
-                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="" key="">{ethers.utils.formatEther(value)} ETH</dd>
+                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="fifteen" key="">{ethers.utils.formatEther(value)} ETH</dd>
                         </div>
                         <div className={transactionBox2}>
                             <dt className={datatableStyle}>Input:</dt>
-                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2 overflow-x-auto" id="" key="">{data}</dd>
+                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2 overflow-x-auto" id="sixteen" key="">{data}</dd>
                         </div>
                         <div className={transactionBox1}>
                             <dt className={datatableStyle}>Confirmations:</dt>
@@ -84,38 +84,38 @@ const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestam
                         </div>
                         <div className={transactionBox2}>
                             <dt className={datatableStyle}>Timestamp:</dt>
-                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="" key="timestamp">{timestamp}</dd>
+                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="seventeen" key="timestamp">{timestamp}</dd>
                         </div>
                     </dl>
                     ) : (
                         <dl>
                             <div className="bg-[#282c34] dark:bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">ID:</dt>
-                                <dd className="mt-1 text-sm text-white font-bold dark:text-black sm:mt-0 sm:col-span-2" id="eleven">{id}</dd>
+                                <dd className="mt-1 text-sm text-white font-bold dark:text-black sm:mt-0 sm:col-span-2" id="twelve">{id}</dd>
                             </div>
                             <div className="bg-[#282c34] dark:bg-gray-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">From:</dt>
                                 <a href={`https://ropsten.etherscan.io/address/${addressFrom}`} target="_blank" rel="noopener noreferrer">
-                                    <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="twelve">{addressFrom}</dd>
+                                    <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="thirteen">{addressFrom}</dd>
                                 </a>
                             </div>
                             <div className="bg-[#282c34] dark:bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">To:</dt>
                                 <a href={`https://ropsten.etherscan.io/address/${addressTo}`} target="_blank" rel="noopener noreferrer">
-                                    <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="thirteen">{addressTo}</dd>
+                                    <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="fourteen">{addressTo}</dd>
                                 </a>
                             </div>
                             <div className="bg-[#282c34] dark:bg-gray-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">Amount:</dt>
-                                <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="fourteen">{amount} ETH</dd>
+                                <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="fifteen">{amount} ETH</dd>
                             </div>
                             <div className="bg-[#282c34] dark:bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">Message:</dt>
-                                <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="fifteen">{message}</dd>
+                                <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="sixteen">{message}</dd>
                             </div>
                             <div className="bg-[#282c34] dark:bg-gray-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">Timestamp:</dt>
-                                <dd className="mt-1 text-[#37c7da] font-bold dark:text-blue-800 sm:mt-0 sm:col-span-2" id="sixteen">{timestamp1}</dd>
+                                <dd className="mt-1 text-[#37c7da] font-bold dark:text-blue-800 sm:mt-0 sm:col-span-2" id="seventeen">{timestamp1}</dd>
                             </div>
                         </dl>
                     )}
@@ -161,7 +161,7 @@ const TransactionsTailwind = () => {
                         <p className="text-black text-center my-2 dark:text-gray-300 font-thin italic">
                             Any data that is visible when an account is not connect is example data and the ID will be marked with "Example"
                         </p>
-                        <div className="flex flex-wrap justify-center items-center mt-10" id="ten">
+                        <div className="flex flex-wrap justify-center items-center mt-10" id="eleven">
                             {[...dummyData].reverse().map((transaction, i) => (
                                 <TransactionsBlock key={i} {...transaction} />
                             ))}
