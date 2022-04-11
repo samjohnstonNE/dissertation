@@ -79,133 +79,116 @@ export const TransactionProvider = ({children}) => {
     /* Fetches and sets gas price from Etherscan using the ethers library (experimental) */
     const getGasPrice = () => {
         try {
-            if (ethereum) {
-                etherscanProvider.getGasPrice().then((gasPrice) => {
+            etherscanProvider.getGasPrice().then((gasPrice) => {
 
-                    // gasPrice is a BigNumber (in wei); format is as a sting (in gwei) and  use of | operator
-                    let gasG = ethers.utils.formatUnits(gasPrice, "gwei") | ethers.utils.formatUnits(gasPrice)
+                // gasPrice is a BigNumber (in wei); format is as a sting (in gwei) and  use of | operator
+                let gasG = ethers.utils.formatUnits(gasPrice, "gwei") | ethers.utils.formatUnits(gasPrice)
 
-                    // format gasPrice for a value in ETH
-                    let gasETH = ethers.utils.formatUnits(gasPrice)
+                // format gasPrice for a value in ETH
+                let gasETH = ethers.utils.formatUnits(gasPrice)
 
-                    setGas(gasETH + ' ETH | ' + gasG + ' gwei')
-                });
-            } else {
-                    console.log("Retrieving Gas Price failed");
-                }
-            } catch (error) {
-                console.log(error);
+                setGas(gasETH + ' ETH | ' + gasG + ' gwei')
+            });
+        } catch (error) {
+            console.log(error);
 
-                throw new Error("No Ethereum object");
-            }
-
+            throw new Error("Retrieving Gas Price failed");
+        }
     }
 
     /* Fetches and sets the low, average and high gas price from the last the etherscan oracle database */
     const getGasPriceOracle = () => {
         try {
-            if (ethereum) {
-                let url = "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=" + apiKey //Mainnet Oracle database using apikey
+            let url = "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=" + apiKey //Mainnet Oracle database using apikey
 
-                fetch(url)
-                    .then((response) => {
-                        if (response.status === 200) {
-                            return response.json()
-                        } else {
-                            throw Error(response.statusText);
-                        }
-                    })
-                    .then ((data) => {
-                        setGasO([
-                            "Low: " +
-                            data.result.SafeGasPrice +
-                            " | " +
-                            "Average: " +
-                            data.result.ProposeGasPrice +
-                            " | " +
-                            "High: " +
-                            data.result.FastGasPrice +
-                            " | " +
-                            "Suggest Base Fee : " +
-                            [data.result.suggestBaseFee | data.result.suggestBaseFee]
-                        ])
-                    })
-                    .catch ((err) => {
-                        console.log("something went wrong ", err)
-                    });
-            } else {
-                console.log("Retrieving Gas Price failed");
-            }
+            fetch(url)
+                .then((response) => {
+                    if (response.status === 200) {
+                        return response.json()
+                    } else {
+                        throw Error(response.statusText);
+                    }
+                })
+                .then ((data) => {
+                    setGasO([
+                        "Low: " +
+                        data.result.SafeGasPrice +
+                        " | " +
+                        "Average: " +
+                        data.result.ProposeGasPrice +
+                        " | " +
+                        "High: " +
+                        data.result.FastGasPrice +
+                        " | " +
+                        "Suggest Base Fee : " +
+                        [data.result.suggestBaseFee | data.result.suggestBaseFee]
+                    ])
+                })
+                .catch ((err) => {
+                    console.log("something went wrong ", err)
+                });
         } catch (error) {
             console.log(error);
 
-            throw new Error("No Ethereum object");
+            throw new Error("Retrieving Gas Price failed");
         }
     }
 
     /* Fetches and sets Ethereum's last known price as USD and BTC from the etherscan database */
     const getEthCurrentPrice = () => {
         try {
-            if (ethereum) {
-                let url = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=" + apiKey
+            let url = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=" + apiKey
 
-                fetch(url)
-                    .then((response) => {
-                        if (response.status === 200) {
-                            return response.json()
-                        } else {
-                            throw Error(response.statusText);
-                        }
-                    })
-                    .then((data) => {
-                        setEth([
-                            "$" +
-                            data.result.ethusd +
-                            " | " +
-                            "ETH/BTC: " +
-                            data.result.ethbtc
-                        ])
-                    })
-                    .catch ((err) => {
-                        console.log("something went wrong ", err)
-                    });
-            } else {
-                console.log("Retrieving Eth Price failed");
-            }
+            fetch(url)
+                .then((response) => {
+                    if (response.status === 200) {
+                        return response.json()
+                    } else {
+                        throw Error(response.statusText);
+                    }
+                })
+                .then((data) => {
+                    setEth([
+                        "$" +
+                        data.result.ethusd +
+                        " | " +
+                        "ETH/BTC: " +
+                        data.result.ethbtc
+                    ])
+                })
+                .catch ((err) => {
+                    console.log("something went wrong ", err)
+                });
         } catch (error) {
             console.log(error);
 
-            throw new Error("No Ethereum object");
+            throw new Error("Retrieving ETH Current Price Failed");
         }
     }
 
     /* Fetches and sets the current circulating supply of Ethereum from the etherscan database */
     const getCurrentSupply = () => {
         try {
-            if (ethereum) {
-                let url = "https://api.etherscan.io/api?module=stats&action=ethsupply&apikey=" + apiKey
+            let url = "https://api.etherscan.io/api?module=stats&action=ethsupply&apikey=" + apiKey
 
-                fetch(url)
-                    .then((response) => {
-                        if (response.status === 200) {
-                            return response.json()
-                        } else {
-                            throw Error(response.statusText);
-                        }
-                    })
-                    .then((data) => {
-                        setSupply([data.result])
-                    })
-                    .catch ((err) => {
-                        console.log("something went wrong ", err)
-                    });
-            } else {
-                console.log("Retrieving Current Supply Failed");
-            }
+            fetch(url)
+                .then((response) => {
+                    if (response.status === 200) {
+                        return response.json()
+                    } else {
+                        throw Error(response.statusText);
+                    }
+                })
+                .then((data) => {
+                    setSupply([data.result])
+                })
+                .catch ((err) => {
+                    console.log("something went wrong ", err)
+                });
         } catch (error) {
             console.log(error);
 
-            throw new Error("No Ethereum object");
+            throw new Error("Retrieving Current Supply Failed");
         }
     }
 
