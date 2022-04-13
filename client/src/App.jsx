@@ -27,7 +27,7 @@ const App = ({children}) => {
     setEnabled(false)
   }
 
-  // Sets page theme based to dark if preference
+  /* Sets page theme based to dark if preference. Taken from the Tailwind CSS website https://tailwindcss.com/docs/dark-mode */
   if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.documentElement.classList.add('dark')
   } else {
