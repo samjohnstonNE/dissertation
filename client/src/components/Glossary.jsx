@@ -29,7 +29,7 @@ const Glossary = () => {
                     <AiOutlineInfoCircle fontSize={18} className='text-black float-right dark:text-gray-300 mx-2 mt-1 cursor-pointer' data-tooltip-target="tooltip-dark4"/>
                     <div id="tooltip-dark4" role="tooltip"
                          className={tooltipStyle}>
-                        The Chain ID is an value used to identify which network the transaction was sent on. (1=Mainnet, 3=Ropsten, 4=Rinkeby, 5=Goerli, 42=Kovan)
+                        The Chain ID is a value used to identify which network the transaction was sent on. (1=Mainnet, 3=Ropsten, 4=Rinkeby, 5=Goerli, 42=Kovan)
                         <div className="tooltip-arrow" data-popper-arrow />
                     </div>
                     Chain ID:
