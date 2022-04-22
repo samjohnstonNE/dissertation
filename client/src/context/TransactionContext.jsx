@@ -193,7 +193,7 @@ export const TransactionProvider = ({children}) => {
     }
 
     /* Fetches and sets all transactions of current account from Etherscan using the ethers library */
-    const transactionHistory = async () => {
+    const transactionHistory = () => {
         try {
             if (ethereum) {
                 etherscanProvider.getHistory(currentAccount).then((history) => {
