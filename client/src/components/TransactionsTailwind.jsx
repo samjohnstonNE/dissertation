@@ -23,10 +23,6 @@ const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestam
 
     const { currentAccount } = useContext(TransactionContext);
 
-    //const date = new Date(timestamp);
-    //const bytes32 = ethers.utils.formatBytes32String(data);
-    //const originalText = ethers.utils.parseBytes32String(bytes32);
-    //const text = ethers.utils.hexlify(data);
 
     return (
         /* Parts of this section is taken from the Tailwind website
