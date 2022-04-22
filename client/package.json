@@ -2,8 +2,8 @@
   "name": "web3.0",
   "author": "Sam Johnston",
   "id": "W17004648",
-  "github": "https://github.com/SamwiseNE",
-  "project": "https://github.com/SamwiseNE/dissertation",
+  "github": "https://github.com/SamjohnstonNE",
+  "project": "https://github.com/SamjohnstonNE/dissertation",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
