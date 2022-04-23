@@ -266,7 +266,7 @@ export const TransactionProvider = ({children}) => {
                     }],
                 });
 
-                const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message); // passes the variables from the input to the smart contract
+                const transactionHash = await transactionContract.addToBlockchain(addressTo, parsedAmount, message);
 
                 // sets loading state to true for loading component to render (user feedback)
                 setIsLoading(true);
