@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { SiEthereum } from "react-icons/si";
 import Input from "./Input";
 import { useWeb3 } from "@3rdweb/hooks";
-import { TransactionContext } from "../context/TransactionContext";
+import { Context } from "../context/Context";
 import Loading from "./Loading";
 import Glossary  from "./Glossary";
 
@@ -12,7 +12,7 @@ import Glossary  from "./Glossary";
  * This is the main component that includes the input section for transactions.
  *
  * This component is the main area of the application that displays wallet address,
- * balance and chain ID using variables passed from the TransactionContext:
+ * balance and chain ID using variables passed from the Context:
  * the wallet address is displayed in full length format.
  * The Input component is called and is used to pass data to the transaction
  * function in the application.
@@ -25,7 +25,7 @@ import Glossary  from "./Glossary";
 const Main = () => {
 
     // functions and variables passed from the transaction context
-    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, balance, isLoading } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, balance, isLoading } = useContext(Context);
 
     // used to read the wallet address - useWeb3(faster and more reliable)
     let { address, chainId } = useWeb3();

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { TransactionContext } from "../context/TransactionContext";
+import { Context } from "../context/Context";
 import dummyData  from "../utils/dummyData";
 import { ethers } from "ethers";
 import { datatableStyle, transactionBox1, transactionBox2 } from "../styles/styles"; // common styles are saved and import to provide better visibility of code
@@ -21,7 +21,7 @@ import { datatableStyle, transactionBox1, transactionBox2 } from "../styles/styl
 
 const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestamp, to, hash, addressFrom, addressTo, amount, message, timestamp1, id, gasPrice, value, data })  => {
 
-    const { currentAccount } = useContext(TransactionContext);
+    const { currentAccount } = useContext(Context);
 
 
     return (
@@ -123,7 +123,7 @@ const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestam
 }
 
 const TransactionsTailwind = () => {
-    const { currentAccount, transactionHistory, history } = useContext(TransactionContext);
+    const { currentAccount, transactionHistory, history } = useContext(Context);
 
     return(
         <div className="flex w-full justify-center items-center 2xl:px-20 bg-[#efeff4] dark:bg-[#0f172a]">

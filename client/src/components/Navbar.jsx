@@ -5,7 +5,7 @@ import { SiEthereum } from "react-icons/si";
 import MetaMask from "../../images/metamask-fox.svg";
 import MathWalletDark from "../../images/Mathwallet_Logo_Icon_White.svg"
 import EtherScanDark from "../../images/etherscan-logo-light-circle.png";
-import { TransactionContext } from "../context/TransactionContext";
+import { Context } from "../context/Context";
 import { tooltipStyle } from "../styles/styles";
 
 /**
@@ -33,7 +33,7 @@ const Navbar = () => {
     const [ toggleMenu, setToggleMenu ] = useState(false);
 
     // functions and variables passed from the
-    const { connectWallet, currentAccount, gas, gasO, supply, eth, refresh } = useContext(TransactionContext);
+    const { connectWallet, currentAccount, gas, gasO, supply, eth, refresh } = useContext(Context);
 
     const toggleSteps = () => {
         location.reload();

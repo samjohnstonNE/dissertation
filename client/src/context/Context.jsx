@@ -19,7 +19,7 @@ import { contractABI, contractAddress, apiKey } from "../utils/constants";
  * @github https://github.com/SamJohnstonNE/dissertation
  */
 
-export const TransactionContext = React.createContext(0);
+export const Context = React.createContext(0);
 
 const { ethereum } = window; //Creates a web3 ethereum window
 
@@ -306,7 +306,7 @@ export const TransactionProvider = ({children}) => {
         [ balance, gas ]);
 
     return (
-        <TransactionContext.Provider value={{
+        <Context.Provider value={{
             connectWallet,
             currentAccount,
             formData,
@@ -329,7 +329,7 @@ export const TransactionProvider = ({children}) => {
             refresh
         }}>
             {children}
-        </TransactionContext.Provider>
+        </Context.Provider>
     );
 
 }

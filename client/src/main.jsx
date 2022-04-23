@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import { TransactionProvider } from "./context/TransactionContext";
+import { TransactionProvider } from "./context/Context";
 import App from './App'
 
 ReactDOM.render(
