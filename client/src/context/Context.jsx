@@ -61,9 +61,9 @@ export const TransactionProvider = ({children}) => {
                     let eth = ethers.utils.formatEther(balance);
 
                     // limit the balance number to 5 characters for better readability
-                    let shortBal = eth.slice(0, 5)
+                    let shortBal = eth.slice(0, 5);
 
-                    setBalance(shortBal + ' ETH')
+                    setBalance(shortBal + ' ETH');
                 });
             } else {
                 console.log("Retrieving balance failed");
@@ -81,12 +81,12 @@ export const TransactionProvider = ({children}) => {
             etherscanProvider.getGasPrice().then((gasPrice) => {
 
                 // gasPrice is a BigNumber (in wei); format is as a sting (in gwei) and  use of | operator
-                let gasG = ethers.utils.formatUnits(gasPrice, "gwei") | ethers.utils.formatUnits(gasPrice)
+                let gasG = ethers.utils.formatUnits(gasPrice, "gwei") | ethers.utils.formatUnits(gasPrice);
 
                 // format gasPrice for a value in ETH
-                let gasETH = ethers.utils.formatUnits(gasPrice)
+                let gasETH = ethers.utils.formatUnits(gasPrice);
 
-                setGas(gasETH + ' ETH | ' + gasG + ' gwei')
+                setGas(gasETH + ' ETH | ' + gasG + ' gwei');
             });
         } catch (error) {
             console.log(error);
@@ -121,10 +121,10 @@ export const TransactionProvider = ({children}) => {
                         " | " +
                         "Suggest Base Fee : " +
                         [data.result.suggestBaseFee | data.result.suggestBaseFee]
-                    ])
+                    ]);
                 })
                 .catch ((err) => {
-                    console.log("something went wrong ", err)
+                    console.log("something went wrong ", err);
                 });
         } catch (error) {
             console.log(error);
@@ -153,10 +153,10 @@ export const TransactionProvider = ({children}) => {
                         " | " +
                         "ETH/BTC: " +
                         data.result.ethbtc
-                    ])
+                    ]);
                 })
                 .catch ((err) => {
-                    console.log("something went wrong ", err)
+                    console.log("something went wrong ", err);
                 });
         } catch (error) {
             console.log(error);
@@ -179,10 +179,10 @@ export const TransactionProvider = ({children}) => {
                     }
                 })
                 .then((data) => {
-                    setSupply([data.result])
+                    setSupply([data.result]);
                 })
                 .catch ((err) => {
-                    console.log("something went wrong ", err)
+                    console.log("something went wrong ", err);
                 });
         } catch (error) {
             console.log(error);
@@ -241,7 +241,7 @@ export const TransactionProvider = ({children}) => {
 
             location.reload();
         } catch (error) {
-            console.log(error)
+            console.log(error);
 
             throw new Error("No Ethereum object");
         }
