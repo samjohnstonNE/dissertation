@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../context/Context";
-import dummyData  from "../utils/dummyData";
+import dummyData from "../utils/dummyData";
 import { ethers } from "ethers";
 import { datatableStyle, transactionBox1, transactionBox2 } from "../styles/styles"; // common styles are saved and import to provide better visibility of code
 
@@ -19,120 +19,180 @@ import { datatableStyle, transactionBox1, transactionBox2 } from "../styles/styl
  * @github https://github.com/SamJohnstonNE/dissertation
  */
 
-const TransactionsBlock = ({ blockNumber, chainId, confirmations, from, timestamp, to, hash, addressFrom, addressTo, amount, message, timestamp1, id, gasPrice, value, data })  => {
-
+const TransactionsBlock = ({
+                               blockNumber,
+                               chainId,
+                               confirmations,
+                               from,
+                               timestamp,
+                               to,
+                               hash,
+                               addressFrom,
+                               addressTo,
+                               amount,
+                               message,
+                               timestamp1,
+                               id,
+                               gasPrice,
+                               value,
+                               data,
+                           }) => {
     const { currentAccount } = useContext(Context);
-
 
     return (
         /* Parts of this section is taken from the Tailwind website
-        * https://tailwindui.com/components/application-ui/data-display/description-lists */
+         * https://tailwindui.com/components/application-ui/data-display/description-lists */
         <div>
             <div className="dark:bg-gray-200 shadow overflow-hidden sm:rounded-lg">
                 <div className="border-t border-gray-200">
-                    { currentAccount ? (
-                    <dl>
-                        <div className={transactionBox1}>
-                            <dt className={datatableStyle}>Chain ID:</dt>
-                            <dd className="mt-1 text-sm text-white font-bold dark:text-black sm:mt-0 sm:col-span-2" id="twelve" key="chainId">{chainId}</dd>
-                        </div>
-                        <div className={transactionBox2}>
-                            <dt className={datatableStyle}>Block Number:</dt>
-                            <a href={`https://ropsten.etherscan.io/block/${blockNumber}`} target="_blank" rel="noopener noreferrer">
-                                <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="" key="blockNumber">{blockNumber}</dd>
-                            </a>
-                        </div>
-                        <div className={transactionBox1}>
-                            <dt className={datatableStyle}>TxID:</dt>
-                            <a href={`https://ropsten.etherscan.io/tx/${hash}`} target="_blank" rel="noopener noreferrer">
-                                <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="" key="hash">{hash}</dd>
-                            </a>
-                        </div>
-                        <div className={transactionBox2}>
-                            <dt className={datatableStyle}>From:</dt>
-                            <a href={`https://ropsten.etherscan.io/address/${from}`} target="_blank" rel="noopener noreferrer">
-                                <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="thirteen" key="from">{from}</dd>
-                            </a>
-                        </div>
-                        <div className={transactionBox1}>
-                            <dt className={datatableStyle}>To:</dt>
-                            <a href={`https://ropsten.etherscan.io/address/${to}`} target="_blank" rel="noopener noreferrer">
-                                <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="fourteen" key="to">{to}</dd>
-                            </a>
-                        </div>
-                        <div className={transactionBox2}>
-                            <dt className={datatableStyle}>Gas Price:</dt>
-                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="" key="">
-                                {ethers.utils.formatUnits(gasPrice)} ETH | {ethers.utils.formatUnits(gasPrice, "gwei") | ethers.utils.formatUnits(gasPrice)} gwei
-                            </dd>
-                        </div>
-                        <div className={transactionBox1}>
-                            <dt className={datatableStyle}>Value:</dt>
-                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="fifteen" key="">{ethers.utils.formatEther(value)} ETH</dd>
-                        </div>
-                        <div className={transactionBox2}>
-                            <dt className={datatableStyle}>Input:</dt>
-                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2 overflow-x-auto" id="sixteen" key="">{data}</dd>
-                        </div>
-                        <div className={transactionBox1}>
-                            <dt className={datatableStyle}>Confirmations:</dt>
-                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="" key="confirmations">{confirmations}</dd>
-                        </div>
-                        <div className={transactionBox2}>
-                            <dt className={datatableStyle}>Timestamp:</dt>
-                            <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="seventeen" key="timestamp">{timestamp}</dd>
-                        </div>
-                    </dl>
+                    {currentAccount ? (
+                        <dl>
+                            <div className={transactionBox1}>
+                                <dt className={datatableStyle}>Chain ID:</dt>
+                                <dd
+                                    className="mt-1 text-sm text-white font-bold dark:text-black sm:mt-0 sm:col-span-2"
+                                    id="twelve"
+                                    key="chainId"
+                                >
+                                    {chainId}
+                                </dd>
+                            </div>
+                            <div className={transactionBox2}>
+                                <dt className={datatableStyle}>Block Number:</dt>
+                                <a href={`https://ropsten.etherscan.io/block/${blockNumber}`} target="_blank" rel="noopener noreferrer">
+                                    <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="" key="blockNumber">
+                                        {blockNumber}
+                                    </dd>
+                                </a>
+                            </div>
+                            <div className={transactionBox1}>
+                                <dt className={datatableStyle}>TxID:</dt>
+                                <a href={`https://ropsten.etherscan.io/tx/${hash}`} target="_blank" rel="noopener noreferrer">
+                                    <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="" key="hash">
+                                        {hash}
+                                    </dd>
+                                </a>
+                            </div>
+                            <div className={transactionBox2}>
+                                <dt className={datatableStyle}>From:</dt>
+                                <a href={`https://ropsten.etherscan.io/address/${from}`} target="_blank" rel="noopener noreferrer">
+                                    <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="thirteen" key="from">
+                                        {from}
+                                    </dd>
+                                </a>
+                            </div>
+                            <div className={transactionBox1}>
+                                <dt className={datatableStyle}>To:</dt>
+                                <a href={`https://ropsten.etherscan.io/address/${to}`} target="_blank" rel="noopener noreferrer">
+                                    <dd className="mt-1 text-sm text-blue-500 sm:mt-0 sm:col-span-2" id="fourteen" key="to">
+                                        {to}
+                                    </dd>
+                                </a>
+                            </div>
+                            <div className={transactionBox2}>
+                                <dt className={datatableStyle}>Gas Price:</dt>
+                                <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="" key="">
+                                    {ethers.utils.formatUnits(gasPrice)} ETH |{" "}
+                                    {ethers.utils.formatUnits(gasPrice, "gwei") | ethers.utils.formatUnits(gasPrice)} gwei
+                                </dd>
+                            </div>
+                            <div className={transactionBox1}>
+                                <dt className={datatableStyle}>Value:</dt>
+                                <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="fifteen" key="">
+                                    {ethers.utils.formatEther(value)} ETH
+                                </dd>
+                            </div>
+                            <div className={transactionBox2}>
+                                <dt className={datatableStyle}>Input:</dt>
+                                <dd
+                                    className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2 overflow-x-auto"
+                                    id="sixteen"
+                                    key=""
+                                >
+                                    {data}
+                                </dd>
+                            </div>
+                            <div className={transactionBox1}>
+                                <dt className={datatableStyle}>Confirmations:</dt>
+                                <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="" key="confirmations">
+                                    {confirmations}
+                                </dd>
+                            </div>
+                            <div className={transactionBox2}>
+                                <dt className={datatableStyle}>Timestamp:</dt>
+                                <dd
+                                    className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2"
+                                    id="seventeen"
+                                    key="timestamp"
+                                >
+                                    {timestamp}
+                                </dd>
+                            </div>
+                        </dl>
                     ) : (
                         <dl>
                             <div className="bg-[#282c34] dark:bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">ID:</dt>
-                                <dd className="mt-1 text-sm text-white font-bold dark:text-black sm:mt-0 sm:col-span-2" id="twelve">{id}</dd>
+                                <dd className="mt-1 text-sm text-white font-bold dark:text-black sm:mt-0 sm:col-span-2" id="twelve">
+                                    {id}
+                                </dd>
                             </div>
                             <div className="bg-[#282c34] dark:bg-gray-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">From:</dt>
-                                <a href={`https://ropsten.etherscan.io/address/${addressFrom}`} target="_blank" rel="noopener noreferrer">
-                                    <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="thirteen">{addressFrom}</dd>
+                                <a
+                                    href={`https://ropsten.etherscan.io/address/${addressFrom}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="thirteen">
+                                        {addressFrom}
+                                    </dd>
                                 </a>
                             </div>
                             <div className="bg-[#282c34] dark:bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">To:</dt>
                                 <a href={`https://ropsten.etherscan.io/address/${addressTo}`} target="_blank" rel="noopener noreferrer">
-                                    <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="fourteen">{addressTo}</dd>
+                                    <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="fourteen">
+                                        {addressTo}
+                                    </dd>
                                 </a>
                             </div>
                             <div className="bg-[#282c34] dark:bg-gray-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">Amount:</dt>
-                                <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="fifteen">{amount} ETH</dd>
+                                <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="fifteen">
+                                    {amount} ETH
+                                </dd>
                             </div>
                             <div className="bg-[#282c34] dark:bg-gray-200 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">Message:</dt>
-                                <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="sixteen">{message}</dd>
+                                <dd className="mt-1 text-sm text-white dark:text-black sm:mt-0 sm:col-span-2" id="sixteen">
+                                    {message}
+                                </dd>
                             </div>
                             <div className="bg-[#282c34] dark:bg-gray-300 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b border-gray-400 border-opacity-20">
                                 <dt className="text-sm font-medium text-white dark:text-black">Timestamp:</dt>
-                                <dd className="mt-1 text-[#37c7da] font-bold dark:text-blue-800 sm:mt-0 sm:col-span-2" id="seventeen">{timestamp1}</dd>
+                                <dd className="mt-1 text-[#37c7da] font-bold dark:text-blue-800 sm:mt-0 sm:col-span-2" id="seventeen">
+                                    {timestamp1}
+                                </dd>
                             </div>
                         </dl>
                     )}
                 </div>
             </div>
-            <br/>
+            <br />
         </div>
-    )
-}
+    );
+};
 
 const TransactionsTailwind = () => {
     const { currentAccount, transactionHistory, history } = useContext(Context);
 
-    return(
+    return (
         <div className="flex w-full justify-center items-center 2xl:px-20 bg-[#efeff4] dark:bg-[#0f172a]">
             <div className="flex flex-col md:px-20 py-4 px-4 w-full">
-                { currentAccount ? (
+                {currentAccount ? (
                     <div>
-                        <h2 className="text-black ml-9 text-3xl text-left my-2 dark:text-gray-300">
-                            Latest Transactions
-                        </h2>
+                        <h2 className="text-black ml-9 text-3xl text-left my-2 dark:text-gray-300">Latest Transactions</h2>
                         <button
                             type="button"
                             onClick={transactionHistory}
@@ -155,7 +215,8 @@ const TransactionsTailwind = () => {
                             Connect your account to see the latest transactions
                         </h2>
                         <p className="text-black text-center my-2 dark:text-gray-300 font-thin italic">
-                            Any data that is visible when an account is not connect is example data and the ID will be marked with "Example"
+                            Any data that is visible when an account is not connect is example data and the ID will be marked with
+                            "Example"
                         </p>
                         <div className="flex flex-wrap justify-center items-center mt-10" id="eleven">
                             {[...dummyData].reverse().map((transaction, i) => (
@@ -167,6 +228,6 @@ const TransactionsTailwind = () => {
             </div>
         </div>
     );
-}
+};
 
 export default TransactionsTailwind;
