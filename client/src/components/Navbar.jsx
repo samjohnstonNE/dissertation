@@ -44,7 +44,7 @@ const Navbar = () => {
         <nav className="w-full flex md:justify-end justify-between items-center p-4 bg-[#282c34] dark:bg-[#0f172a] border-b border-gray-400 border-opacity-20">
             <div>
                 <a href="https://metamask.io/" target="_blank" rel="noopener noreferrer" data-tooltip-target="tooltip-dark">
-                    <img src={MetaMask} alt="MetaMask" className="w-12 cursor-pointer" id="one" />
+                    <img src={MetaMask} alt="MetaMask Logo" className="w-12 cursor-pointer" id="one" />
                 </a>
                 <div id="tooltip-dark" role="tooltip"
                      className={tooltipStyle}>
@@ -54,7 +54,7 @@ const Navbar = () => {
             </div>
             <div className="pl-4">
                 <a href="https://mathwallet.org/en-us/" target="_blank" rel="noopener noreferrer" data-tooltip-target="tooltip-dark2">
-                    <img src={MathWalletDark} alt="MathWallet" className="w-12 cursor-pointer" id="two" />
+                    <img src={MathWalletDark} alt="MathWallet Logo" className="w-12 cursor-pointer" id="two" />
                 </a>
                 <div id="tooltip-dark2" role="tooltip"
                      className={tooltipStyle}>
@@ -67,7 +67,7 @@ const Navbar = () => {
                 </p>
             <div className="pl-4">
                 <a href="https://etherscan.io/" target="_blank" rel="noopener noreferrer" data-tooltip-target="tooltip-dark3">
-                    <img src={EtherScanDark} alt="EtherScan" className="w-12 cursor-pointer" id="three" />
+                    <img src={EtherScanDark} alt="EtherScan Logo" className="w-12 cursor-pointer" id="three" />
                 </a>
                 <div id="tooltip-dark3" role="tooltip"
                      className={tooltipStyle}>

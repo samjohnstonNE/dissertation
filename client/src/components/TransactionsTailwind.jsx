@@ -130,9 +130,9 @@ const TransactionsTailwind = () => {
             <div className="flex flex-col md:px-20 py-4 px-4 w-full">
                 { currentAccount ? (
                     <div>
-                        <h3 className="text-black ml-9 text-3xl text-left my-2 dark:text-gray-300">
+                        <h2 className="text-black ml-9 text-3xl text-left my-2 dark:text-gray-300">
                             Latest Transactions
-                        </h3>
+                        </h2>
                         <button
                             type="button"
                             onClick={transactionHistory}
@@ -151,9 +151,9 @@ const TransactionsTailwind = () => {
                     </div>
                 ) : (
                     <div>
-                        <h3 className="text-black text-3xl text-center my-2 dark:text-gray-300">
+                        <h2 className="text-black text-3xl text-center my-2 dark:text-gray-300">
                             Connect your account to see the latest transactions
-                        </h3>
+                        </h2>
                         <p className="text-black text-center my-2 dark:text-gray-300 font-thin italic">
                             Any data that is visible when an account is not connect is example data and the ID will be marked with "Example"
                         </p>
