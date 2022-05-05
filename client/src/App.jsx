@@ -7,6 +7,7 @@ import { Steps } from "intro.js-react";
 import stepList from "./utils/stepList";
 
 const App = ({ children }) => {
+
   // enable supported chains (Mainnet, Ropsten, Rinkeby, Goerli, Kovan, Custom Network)
   const supportedChainIds = [1, 3, 4, 5, 42, 1337];
 
